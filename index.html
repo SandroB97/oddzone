@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -5,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>ODDZONE – Sports Picks & VIP</title>
+
   <meta
     name="description"
     content="ODDZONE VIP – strukturierte Sport-Tipps direkt über deinen persönlichen Telegram-Chat."
@@ -17,12 +19,10 @@
       --card: #101010;
       --card-hover: #151515;
       --lime: #b6ff00;
-      --lime-dark: #8dcc00;
       --white: #ffffff;
       --text: #d6d6d6;
       --muted: #858585;
       --border: #222222;
-      --danger: #ff5252;
     }
 
     * {
@@ -124,8 +124,8 @@
     .hero::before {
       content: "";
       position: absolute;
-      width: 600px;
-      height: 600px;
+      width: 650px;
+      height: 650px;
       right: -220px;
       top: -180px;
       background: var(--lime);
@@ -134,11 +134,32 @@
       filter: blur(90px);
     }
 
-    .hero-content {
+    .hero-grid {
       position: relative;
       z-index: 2;
-      max-width: 760px;
-      padding: 100px 0;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 50px;
+      align-items: center;
+      padding: 90px 0;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 540px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0 35px rgba(182, 255, 0, 0.18));
     }
 
     .eyebrow {
@@ -163,9 +184,9 @@
     }
 
     h1 {
-      font-size: clamp(56px, 10vw, 120px);
+      font-size: clamp(52px, 8vw, 100px);
       line-height: 0.88;
-      letter-spacing: -6px;
+      letter-spacing: -5px;
       font-weight: 1000;
       margin-bottom: 30px;
     }
@@ -221,7 +242,7 @@
       color: var(--lime);
     }
 
-    /* TRUST STRIP */
+    /* TRUST */
 
     .trust-strip {
       border-bottom: 1px solid var(--border);
@@ -582,6 +603,7 @@
     /* MOBILE */
 
     @media (max-width: 800px) {
+
       .nav-inner {
         min-height: 66px;
       }
@@ -590,16 +612,34 @@
         display: none;
       }
 
+      .nav-button {
+        padding: 10px 14px;
+      }
+
       .hero {
         min-height: auto;
       }
 
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 75px 0;
+      }
+
       .hero-content {
-        padding: 90px 0;
+        order: 1;
+      }
+
+      .hero-image {
+        order: 2;
+      }
+
+      .hero-image img {
+        max-width: 430px;
       }
 
       h1 {
-        font-size: clamp(55px, 17vw, 90px);
+        font-size: clamp(52px, 16vw, 88px);
         letter-spacing: -4px;
       }
 
@@ -691,7 +731,9 @@
 
   <!-- HERO -->
   <header class="hero">
-    <div class="container">
+
+    <div class="container hero-grid">
+
       <div class="hero-content">
 
         <div class="eyebrow">
@@ -722,7 +764,19 @@
         </div>
 
       </div>
+
+
+      <div class="hero-image">
+
+        <img
+          src="/IMG_7465.png"
+          alt="ODDZONE"
+        >
+
+      </div>
+
     </div>
+
   </header>
 
 
@@ -934,35 +988,18 @@
         <div class="telegram-features">
 
           <div class="telegram-feature">
-
             <strong>🟢 Tages-Tipps</strong>
-
-            <span>
-              Neue Sport-Tipps direkt im Bot.
-            </span>
-
+            <span>Neue Sport-Tipps direkt im Bot.</span>
           </div>
 
-
           <div class="telegram-feature">
-
             <strong>🔥 VIP-Inhalte</strong>
-
-            <span>
-              Exklusive Inhalte für aktive VIP-Mitglieder.
-            </span>
-
+            <span>Exklusive Inhalte für aktive VIP-Mitglieder.</span>
           </div>
 
-
           <div class="telegram-feature">
-
             <strong>🔒 Persönlich</strong>
-
-            <span>
-              Jeder VIP-Kunde erhält seine Inhalte individuell.
-            </span>
-
+            <span>Jeder VIP-Kunde erhält seine Inhalte individuell.</span>
           </div>
 
         </div>
@@ -998,6 +1035,7 @@
         <div class="vip-top">
 
           <div>
+
             <div class="eyebrow">
               ODDZONE VIP
             </div>
@@ -1006,6 +1044,7 @@
               Deine<br>
               VIP-ZONE.
             </div>
+
           </div>
 
           <div class="price">
@@ -1017,21 +1056,10 @@
 
         <div class="vip-list">
 
-          <div>
-            Tägliche VIP Sport-Tipps
-          </div>
-
-          <div>
-            Persönlicher Telegram-Bot
-          </div>
-
-          <div>
-            Strukturierte Tipp-Informationen
-          </div>
-
-          <div>
-            Exklusive VIP-Inhalte
-          </div>
+          <div>Tägliche VIP Sport-Tipps</div>
+          <div>Persönlicher Telegram-Bot</div>
+          <div>Strukturierte Tipp-Informationen</div>
+          <div>Exklusive VIP-Inhalte</div>
 
         </div>
 
@@ -1069,89 +1097,54 @@
       <div class="faq-list">
 
         <details>
-
-          <summary>
-            Gibt es eine Gewinn-Garantie?
-          </summary>
-
+          <summary>Gibt es eine Gewinn-Garantie?</summary>
           <p>
             Nein. Sportwetten sind mit Risiko verbunden.
             Vergangene Ergebnisse garantieren keine zukünftigen Gewinne.
           </p>
-
         </details>
 
-
         <details>
-
-          <summary>
-            Welche Sportarten werden abgedeckt?
-          </summary>
-
+          <summary>Welche Sportarten werden abgedeckt?</summary>
           <p>
             Je nach verfügbarem Angebot können unter anderem
             Fussball, Tennis, Basketball, Eishockey und weitere
             Sportarten enthalten sein.
           </p>
-
         </details>
 
-
         <details>
-
-          <summary>
-            Wie erhalte ich die Tipps?
-          </summary>
-
+          <summary>Wie erhalte ich die Tipps?</summary>
           <p>
             Nach erfolgreicher Freischaltung erhältst du deine
             ODDZONE VIP-Inhalte direkt über deinen persönlichen
             Telegram-Chat.
           </p>
-
         </details>
 
-
         <details>
-
-          <summary>
-            Gibt es eine öffentliche Telegram-Gruppe?
-          </summary>
-
+          <summary>Gibt es eine öffentliche Telegram-Gruppe?</summary>
           <p>
             Nein. ODDZONE setzt auf persönliche Telegram-Chats.
             Jeder VIP-Kunde erhält seine Inhalte individuell.
           </p>
-
         </details>
 
-
         <details>
-
-          <summary>
-            Kann ich jederzeit kündigen?
-          </summary>
-
+          <summary>Kann ich jederzeit kündigen?</summary>
           <p>
             Die konkreten Kündigungsbedingungen hängen vom eingesetzten
             Zahlungsanbieter und deinem gewählten Abonnement ab.
           </p>
-
         </details>
 
-
         <details>
-
-          <summary>
-            Ist ODDZONE für Minderjährige geeignet?
-          </summary>
-
+          <summary>Ist ODDZONE für Minderjährige geeignet?</summary>
           <p>
             Nein. Sportwetten sind nur für Personen geeignet, die das
             gesetzlich vorgeschriebene Mindestalter erreicht haben.
             Beachte die geltenden Regeln an deinem Wohnort.
           </p>
-
         </details>
 
       </div>
@@ -1217,3 +1210,4 @@
 
 </body>
 </html>
+```
