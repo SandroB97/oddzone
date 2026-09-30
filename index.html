@@ -5,18 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>ODDZONE – Sports Picks & VIP</title>
+  <meta
+    name="description"
+    content="ODDZONE VIP – strukturierte Sport-Tipps direkt über deinen persönlichen Telegram-Chat."
+  >
 
   <style>
     :root {
       --bg: #050505;
       --bg-soft: #0b0b0b;
       --card: #101010;
-      --lime: #b7ff00;
+      --card-hover: #151515;
+      --lime: #b6ff00;
+      --lime-dark: #8dcc00;
       --white: #ffffff;
-      --muted: #9a9a9a;
-      --border: rgba(255,255,255,0.08);
-      --green: #4dff88;
-      --red: #ff5c5c;
+      --text: #d6d6d6;
+      --muted: #858585;
+      --border: #222222;
+      --danger: #ff5252;
     }
 
     * {
@@ -30,9 +36,9 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
     }
 
@@ -41,27 +47,24 @@
       text-decoration: none;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
     .container {
-      width: min(1180px, 92%);
+      width: min(1120px, 92%);
       margin: 0 auto;
     }
+
+    /* NAV */
 
     nav {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(5,5,5,0.92);
+      background: rgba(5, 5, 5, 0.94);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-inner {
-      min-height: 76px;
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -69,9 +72,9 @@
     }
 
     .logo {
-      font-size: 27px;
+      font-size: 25px;
       font-weight: 900;
-      letter-spacing: -1.5px;
+      letter-spacing: -1px;
     }
 
     .logo span {
@@ -81,147 +84,136 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 26px;
+      list-style: none;
+      color: var(--muted);
       font-size: 14px;
-      color: #d6d6d6;
-    }
-
-    .nav-links a {
-      transition: 0.2s ease;
+      font-weight: 700;
     }
 
     .nav-links a:hover {
-      color: var(--lime);
+      color: var(--white);
     }
 
     .nav-button {
       background: var(--lime);
-      color: #050505;
-      padding: 11px 19px;
-      border-radius: 8px;
-      font-weight: 900;
+      color: #000;
+      padding: 12px 18px;
+      border-radius: 6px;
       font-size: 13px;
+      font-weight: 900;
       transition: 0.2s ease;
     }
 
     .nav-button:hover {
-      background: #d1ff4d;
+      background: var(--white);
       transform: translateY(-1px);
     }
 
+    /* HERO */
+
     .hero {
+      min-height: 760px;
+      display: flex;
+      align-items: center;
       position: relative;
       overflow: hidden;
-      background:
-        radial-gradient(circle at 80% 35%, rgba(183,255,0,0.12), transparent 32%),
-        radial-gradient(circle at 20% 20%, rgba(183,255,0,0.05), transparent 30%),
-        var(--bg);
+      border-bottom: 1px solid var(--border);
     }
 
     .hero::before {
       content: "";
       position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-      background-size: 50px 50px;
-      mask-image: linear-gradient(to bottom, black, transparent);
-      pointer-events: none;
-    }
-
-    .hero-layout {
-      position: relative;
-      min-height: 760px;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      align-items: center;
-      gap: 50px;
-      padding: 80px 0;
+      width: 600px;
+      height: 600px;
+      right: -220px;
+      top: -180px;
+      background: var(--lime);
+      opacity: 0.06;
+      border-radius: 50%;
+      filter: blur(90px);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
+      max-width: 760px;
+      padding: 100px 0;
     }
 
-    .vip-badge {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid rgba(183,255,0,0.35);
-      background: rgba(183,255,0,0.07);
       color: var(--lime);
-      padding: 8px 13px;
-      border-radius: 999px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 900;
-      letter-spacing: 1px;
-      margin-bottom: 22px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
     }
 
-    .vip-badge::before {
+    .eyebrow::before {
       content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
+      width: 8px;
+      height: 8px;
       background: var(--lime);
-      box-shadow: 0 0 12px var(--lime);
+      border-radius: 50%;
+      box-shadow: 0 0 14px var(--lime);
     }
 
-    .hero h1 {
-      font-size: clamp(48px, 7vw, 92px);
-      line-height: 0.95;
-      letter-spacing: -5px;
-      max-width: 780px;
-      font-weight: 950;
-      margin-bottom: 25px;
+    h1 {
+      font-size: clamp(56px, 10vw, 120px);
+      line-height: 0.88;
+      letter-spacing: -6px;
+      font-weight: 1000;
+      margin-bottom: 30px;
     }
 
-    .hero h1 span {
+    h1 span {
       color: var(--lime);
     }
 
     .hero-text {
-      max-width: 620px;
-      color: #b2b2b2;
-      font-size: 18px;
-      margin-bottom: 32px;
+      max-width: 650px;
+      color: var(--text);
+      font-size: 19px;
+      line-height: 1.7;
+      margin-bottom: 38px;
     }
 
-    .hero-buttons {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 13px;
-      margin-bottom: 30px;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 6px;
+      font-weight: 900;
+      font-size: 14px;
+      transition: 0.2s ease;
     }
 
     .btn-primary {
       background: var(--lime);
-      color: #050505;
-      padding: 15px 24px;
-      border-radius: 9px;
-      font-weight: 900;
-      font-size: 14px;
-      transition: 0.2s ease;
-      display: inline-block;
+      color: #000;
     }
 
     .btn-primary:hover {
-      background: #d1ff4d;
+      background: var(--white);
       transform: translateY(-2px);
     }
 
     .btn-secondary {
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.03);
-      color: white;
-      padding: 15px 24px;
-      border-radius: 9px;
-      font-weight: 800;
-      font-size: 14px;
-      transition: 0.2s ease;
-      display: inline-block;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--white);
     }
 
     .btn-secondary:hover {
@@ -229,51 +221,20 @@
       color: var(--lime);
     }
 
-    .hero-visual {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    /* TRUST STRIP */
 
-    .hero-image-wrap {
-      position: relative;
-      width: 100%;
-      max-width: 570px;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(183,255,0,0.2);
-      background: #0c0c0c;
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.02),
-        0 30px 80px rgba(0,0,0,0.7),
-        0 0 80px rgba(183,255,0,0.08);
-    }
-
-    .hero-image {
-      width: 100%;
-      height: auto;
-      min-height: 500px;
-      object-fit: cover;
-    }
-
-    .trust-bar {
-      border-top: 1px solid var(--border);
+    .trust-strip {
       border-bottom: 1px solid var(--border);
-      background: #090909;
+      background: var(--bg-soft);
     }
 
     .trust-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
 
     .trust-item {
-      min-height: 95px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
+      padding: 28px 20px;
       border-right: 1px solid var(--border);
       text-align: center;
     }
@@ -282,374 +243,300 @@
       border-right: none;
     }
 
-    .trust-item strong {
+    .trust-number {
       color: var(--lime);
-      font-size: 18px;
-      font-weight: 950;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
     }
 
-    .trust-item span {
-      color: #777;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 3px;
+    .trust-title {
+      font-weight: 900;
+      font-size: 15px;
     }
+
+    /* GENERAL */
 
     section {
       padding: 110px 0;
-    }
-
-    .section-heading {
-      max-width: 700px;
-      margin-bottom: 55px;
+      border-bottom: 1px solid var(--border);
     }
 
     .section-label {
       color: var(--lime);
       font-size: 12px;
       font-weight: 900;
-      text-transform: uppercase;
       letter-spacing: 2px;
-      margin-bottom: 12px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
     }
 
-    .section-heading h2 {
-      font-size: clamp(36px, 5vw, 60px);
+    .section-title {
+      font-size: clamp(38px, 6vw, 64px);
       line-height: 1;
       letter-spacing: -3px;
-      margin-bottom: 17px;
+      margin-bottom: 20px;
     }
 
-    .section-heading p {
+    .section-text {
+      max-width: 650px;
       color: var(--muted);
-      font-size: 16px;
+      font-size: 17px;
     }
 
-    .features {
+    /* WHY */
+
+    .why-grid {
+      margin-top: 60px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 16px;
     }
 
-    .feature-card {
-      background: linear-gradient(145deg, #111111, #0b0b0b);
+    .why-card {
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 30px;
-      transition: 0.25s ease;
+      padding: 32px;
+      min-height: 240px;
+      transition: 0.2s ease;
     }
 
-    .feature-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(183,255,0,0.28);
+    .why-card:hover {
+      background: var(--card-hover);
+      border-color: #333;
+      transform: translateY(-3px);
     }
 
-    .feature-number {
+    .number {
       color: var(--lime);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 900;
       margin-bottom: 45px;
     }
 
-    .feature-card h3 {
+    .why-card h3 {
       font-size: 22px;
       margin-bottom: 12px;
     }
 
-    .feature-card p {
+    .why-card p {
       color: var(--muted);
-      font-size: 14px;
-    }
-
-    .stats-section {
-      background: #080808;
-    }
-
-    .stats-layout {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .stats-main {
-      font-size: clamp(58px, 8vw, 105px);
-      font-weight: 950;
-      line-height: 0.9;
-      color: var(--lime);
-      letter-spacing: -5px;
-      margin-bottom: 18px;
-    }
-
-    .stats-description {
-      color: var(--muted);
-      max-width: 450px;
-    }
-
-    .chart {
-      background: #0e0e0e;
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      padding: 30px;
-    }
-
-    .chart-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-
-    .chart-top strong {
       font-size: 15px;
     }
 
-    .chart-top span {
-      color: var(--lime);
-      font-weight: 900;
-      font-size: 14px;
-    }
-
-    .bars {
-      height: 220px;
-      display: flex;
-      align-items: end;
-      gap: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .bar {
-      flex: 1;
-      background: linear-gradient(to top, #83b900, var(--lime));
-      border-radius: 5px 5px 0 0;
-      min-width: 8px;
-    }
-
-    .example-picks {
-      margin-top: 25px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .pick-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #121212;
-      border: 1px solid rgba(255,255,255,0.06);
-      padding: 13px 15px;
-      border-radius: 9px;
-      font-size: 13px;
-    }
-
-    .pick-win {
-      color: var(--green);
-      font-weight: 900;
-    }
-
-    .pick-loss {
-      color: var(--red);
-      font-weight: 900;
-    }
+    /* HOW */
 
     .steps {
+      margin-top: 60px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 16px;
     }
 
     .step {
-      position: relative;
-      padding: 30px;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: #0d0d0d;
+      border-top: 2px solid var(--border);
+      padding-top: 25px;
     }
 
     .step-number {
       color: var(--lime);
-      font-size: 48px;
-      line-height: 1;
-      font-weight: 950;
-      margin-bottom: 35px;
+      font-weight: 900;
+      font-size: 13px;
+      margin-bottom: 22px;
     }
 
     .step h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
+      font-size: 22px;
+      margin-bottom: 12px;
     }
 
     .step p {
       color: var(--muted);
-      font-size: 14px;
-    }
-
-    .telegram-section {
-      background: #080808;
-    }
-
-    .telegram-card {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 40px;
-      align-items: center;
-      padding: 45px;
-      background: linear-gradient(145deg, #111111, #090909);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-    }
-
-    .telegram-icon {
-      width: 90px;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 20px;
-      background: rgba(183,255,0,0.08);
-      border: 1px solid rgba(183,255,0,0.25);
-      color: var(--lime);
-      font-size: 42px;
-      margin-bottom: 20px;
-    }
-
-    .telegram-card h2 {
-      font-size: 38px;
-      line-height: 1;
-      letter-spacing: -2px;
-      margin-bottom: 15px;
-    }
-
-    .telegram-card h2 span {
-      color: var(--lime);
-    }
-
-    .telegram-card p {
-      color: var(--muted);
       font-size: 15px;
     }
 
-    .telegram-info {
+    /* TELEGRAM */
+
+    .telegram-box {
+      margin-top: 55px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 55px;
       display: grid;
-      gap: 12px;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 50px;
+      align-items: center;
     }
 
-    .telegram-info-item {
-      padding: 16px;
+    .telegram-icon {
+      color: var(--lime);
+      font-size: 50px;
+      margin-bottom: 18px;
+    }
+
+    .telegram-box h3 {
+      font-size: 34px;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .telegram-box p {
+      color: var(--muted);
+      max-width: 600px;
+    }
+
+    .telegram-features {
+      display: grid;
+      gap: 14px;
+    }
+
+    .telegram-feature {
       border: 1px solid var(--border);
-      border-radius: 10px;
+      padding: 18px;
       background: #0d0d0d;
     }
 
-    .telegram-info-item strong {
+    .telegram-feature strong {
       display: block;
       margin-bottom: 4px;
     }
 
-    .telegram-info-item span {
+    .telegram-feature span {
       color: var(--muted);
-      font-size: 13px;
-    }
-
-    .vip-section {
-      background:
-        radial-gradient(circle at 50% 0%, rgba(183,255,0,0.08), transparent 40%),
-        #070707;
-    }
-
-    .vip-card {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 55px;
-      text-align: center;
-      background: linear-gradient(145deg, #121212, #090909);
-      border: 1px solid rgba(183,255,0,0.28);
-      border-radius: 22px;
-    }
-
-    .vip-card h2 {
-      font-size: clamp(40px, 6vw, 70px);
-      letter-spacing: -3px;
-      line-height: 1;
-      margin-bottom: 15px;
-    }
-
-    .vip-card h2 span {
-      color: var(--lime);
-    }
-
-    .vip-price {
-      font-size: 60px;
-      font-weight: 950;
-      margin: 25px 0;
-      letter-spacing: -3px;
-    }
-
-    .vip-price small {
-      color: #777;
-      font-size: 16px;
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-
-    .vip-list {
-      list-style: none;
-      display: grid;
-      gap: 11px;
-      max-width: 430px;
-      margin: 0 auto 30px;
-      text-align: left;
-    }
-
-    .vip-list li {
-      color: #d5d5d5;
       font-size: 14px;
     }
 
-    .vip-list li::before {
+    /* VIP */
+
+    .vip-section {
+      background: #080808;
+    }
+
+    .vip-box {
+      margin-top: 55px;
+      border: 1px solid var(--lime);
+      background: var(--card);
+      padding: 55px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vip-box::after {
+      content: "VIP";
+      position: absolute;
+      right: -20px;
+      bottom: -65px;
+      font-size: 190px;
+      line-height: 1;
+      font-weight: 1000;
+      color: var(--lime);
+      opacity: 0.035;
+      pointer-events: none;
+    }
+
+    .vip-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .vip-title {
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 0.95;
+      letter-spacing: -3px;
+    }
+
+    .price {
+      color: var(--lime);
+      font-size: 38px;
+      font-weight: 1000;
+      white-space: nowrap;
+    }
+
+    .price span {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .vip-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .vip-list div {
+      color: var(--text);
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    .vip-list div::before {
       content: "✓";
       color: var(--lime);
       font-weight: 900;
       margin-right: 10px;
     }
 
-    .faq {
-      max-width: 850px;
-      margin: 0 auto;
+    /* FAQ */
+
+    .faq-list {
+      margin-top: 50px;
+      display: grid;
+      gap: 10px;
     }
 
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-      padding: 24px 0;
+    details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 22px 24px;
     }
 
-    .faq-item h3 {
-      font-size: 17px;
-      margin-bottom: 9px;
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      list-style: none;
     }
 
-    .faq-item p {
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      float: right;
+      color: var(--lime);
+      font-size: 22px;
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    details p {
       color: var(--muted);
-      font-size: 14px;
+      margin-top: 15px;
+      max-width: 850px;
     }
+
+    /* FINAL CTA */
 
     .final-cta {
-      padding: 120px 0;
       text-align: center;
-      border-top: 1px solid var(--border);
-      background:
-        radial-gradient(circle at center, rgba(183,255,0,0.09), transparent 38%),
-        #050505;
+      padding: 130px 0;
+      border-bottom: 1px solid var(--border);
     }
 
     .final-cta h2 {
-      font-size: clamp(42px, 7vw, 82px);
-      line-height: 0.95;
-      letter-spacing: -4px;
-      margin-bottom: 20px;
+      font-size: clamp(50px, 9vw, 100px);
+      line-height: 0.9;
+      letter-spacing: -5px;
+      margin-bottom: 25px;
     }
 
     .final-cta h2 span {
@@ -657,149 +544,115 @@
     }
 
     .final-cta p {
+      max-width: 600px;
+      margin: 0 auto 35px;
       color: var(--muted);
-      max-width: 550px;
-      margin: 0 auto 30px;
+      font-size: 17px;
     }
 
+    /* FOOTER */
+
     footer {
-      border-top: 1px solid var(--border);
       padding: 35px 0;
-      background: #030303;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .footer-inner {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       gap: 20px;
+      flex-wrap: wrap;
     }
 
     .footer-logo {
-      font-size: 22px;
-      font-weight: 950;
+      color: var(--white);
+      font-weight: 900;
     }
 
     .footer-logo span {
       color: var(--lime);
     }
 
-    .footer-text {
-      color: #666;
-      font-size: 12px;
-      text-align: right;
+    .risk {
+      color: #707070;
+      max-width: 700px;
     }
 
-    @media (max-width: 900px) {
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+      .nav-inner {
+        min-height: 66px;
+      }
 
       .nav-links {
         display: none;
       }
 
-      .hero-layout {
-        grid-template-columns: 1fr;
+      .hero {
         min-height: auto;
-        padding: 70px 0 80px;
       }
 
       .hero-content {
-        text-align: center;
+        padding: 90px 0;
       }
 
-      .hero-text {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-buttons {
-        justify-content: center;
-      }
-
-      .hero-visual {
-        margin-top: 15px;
-      }
-
-      .features,
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      .stats-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .stats-content {
-        text-align: center;
-      }
-
-      .stats-description {
-        margin: 0 auto;
-      }
-
-      .trust-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .trust-item:nth-child(2) {
-        border-right: none;
-      }
-
-      .trust-item:nth-child(3),
-      .trust-item:nth-child(4) {
-        border-top: 1px solid var(--border);
-      }
-
-      .telegram-card {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 600px) {
-
-      .hero h1 {
-        font-size: 53px;
-        letter-spacing: -3px;
+      h1 {
+        font-size: clamp(55px, 17vw, 90px);
+        letter-spacing: -4px;
       }
 
       .hero-text {
         font-size: 16px;
       }
 
-      .hero-image {
-        min-height: 350px;
+      .trust-grid,
+      .why-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-item {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .trust-item:last-child {
+        border-bottom: none;
+      }
+
+      .telegram-box {
+        grid-template-columns: 1fr;
+        padding: 35px 25px;
+      }
+
+      .vip-box {
+        padding: 35px 25px;
+      }
+
+      .vip-top {
+        flex-direction: column;
+      }
+
+      .vip-list {
+        grid-template-columns: 1fr;
+      }
+
+      .price {
+        font-size: 32px;
       }
 
       section {
         padding: 80px 0;
       }
 
-      .vip-card {
-        padding: 35px 20px;
+      .final-cta {
+        padding: 100px 0;
       }
 
-      .vip-price {
-        font-size: 50px;
-      }
-
-      .trust-item {
-        min-height: 80px;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footer-text {
-        text-align: center;
-      }
-
-      .telegram-card {
-        padding: 30px 20px;
-      }
-
-      .telegram-card h2 {
-        font-size: 32px;
+      .final-cta h2 {
+        letter-spacing: -3px;
       }
     }
   </style>
@@ -807,6 +660,7 @@
 
 <body>
 
+  <!-- NAV -->
   <nav>
     <div class="container nav-inner">
 
@@ -814,18 +668,19 @@
         ODD<span>ZONE</span>
       </a>
 
-      <div class="nav-links">
-        <a href="#warum">Warum ODDZONE</a>
-        <a href="#statistik">Statistik</a>
-        <a href="#telegram">Telegram</a>
-        <a href="#vip">VIP</a>
-        <a href="#faq">FAQ</a>
-      </div>
+      <ul class="nav-links">
+        <li><a href="#why">Warum ODDZONE</a></li>
+        <li><a href="#how">So funktioniert's</a></li>
+        <li><a href="#telegram">Telegram</a></li>
+        <li><a href="#vip">VIP</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
 
-      <!-- STRIPE 1 -->
       <a
-        href="https://buy.stripe.com/9B66oGgRN5xF52Baed7ok00"
         class="nav-button"
+        href="https://buy.stripe.com/9B66oGgRN5xF52Baed7ok00"
+        target="_blank"
+        rel="noopener"
       >
         VIP-ZUGANG
       </a>
@@ -834,13 +689,12 @@
   </nav>
 
 
+  <!-- HERO -->
   <header class="hero">
-
-    <div class="container hero-layout">
-
+    <div class="container">
       <div class="hero-content">
 
-        <div class="vip-badge">
+        <div class="eyebrow">
           ODDZONE VIP
         </div>
 
@@ -850,66 +704,46 @@
         </h1>
 
         <p class="hero-text">
-          Strukturierte Sport-Tipps, nachvollziehbare Statistiken
-          und exklusive tägliche VIP-Picks für Fussball, Tennis,
-          Basketball, Eishockey und mehr.
+          Strukturierte Sport-Tipps und exklusive tägliche VIP-Picks
+          für Fussball, Tennis, Basketball, Eishockey und mehr –
+          direkt über deinen persönlichen Telegram-Chat.
         </p>
 
-        <div class="hero-buttons">
+        <div class="hero-actions">
 
-          <a href="#vip" class="btn-primary">
+          <a href="#vip" class="btn btn-primary">
             VIP STARTEN →
           </a>
 
-          <a href="#statistik" class="btn-secondary">
-            STATISTIK ANSEHEN
+          <a href="#telegram" class="btn btn-secondary">
+            TELEGRAM
           </a>
 
         </div>
 
       </div>
-
-      <div class="hero-visual">
-
-        <div class="hero-image-wrap">
-
-          <img
-            src="./IMG_7465.png"
-            alt="ODDZONE Sport-Tipps"
-            class="hero-image"
-          >
-
-        </div>
-
-      </div>
-
     </div>
-
   </header>
 
 
-  <div class="trust-bar">
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
 
     <div class="container trust-grid">
 
       <div class="trust-item">
-        <strong>VIP</strong>
-        <span>Exklusive Tipps</span>
+        <div class="trust-number">VIP</div>
+        <div class="trust-title">Exklusive Tipps</div>
       </div>
 
       <div class="trust-item">
-        <strong>TÄGLICH</strong>
-        <span>Neue Tipps</span>
+        <div class="trust-number">DAILY</div>
+        <div class="trust-title">Neue Tipps</div>
       </div>
 
       <div class="trust-item">
-        <strong>TELEGRAM</strong>
-        <span>Persönlicher Chat</span>
-      </div>
-
-      <div class="trust-item">
-        <strong>CHF 50</strong>
-        <span>Pro Monat</span>
+        <div class="trust-number">TELEGRAM</div>
+        <div class="trust-title">Persönlicher Chat</div>
       </div>
 
     </div>
@@ -917,84 +751,69 @@
   </div>
 
 
-  <section id="warum">
+  <!-- WHY ODDZONE -->
+  <section id="why">
 
     <div class="container">
 
-      <div class="section-heading">
-
-        <div class="section-label">
-          Warum ODDZONE
-        </div>
-
-        <h2>
-          Klare Tipps.
-          <span style="color:var(--lime);">Direkt zu dir.</span>
-        </h2>
-
-        <p>
-          ODDZONE konzentriert sich auf strukturierte Sport-Tipps,
-          nachvollziehbare Informationen und eine einfache Nutzung
-          über deinen persönlichen Telegram-Chat.
-        </p>
-
+      <div class="section-label">
+        Warum ODDZONE
       </div>
 
+      <h2 class="section-title">
+        Klare Tipps.<br>
+        Direkt zu dir.
+      </h2>
 
-      <div class="features">
-
-        <div class="feature-card">
-
-          <div class="feature-number">
-            01
-          </div>
-
-          <h3>
-            Tägliche Tipps
-          </h3>
-
-          <p>
-            Erhalte täglich neue Sport-Tipps direkt in deinem
-            persönlichen ODDZONE Telegram-Chat.
-          </p>
-
-        </div>
+      <p class="section-text">
+        ODDZONE konzentriert sich auf strukturierte Sport-Tipps,
+        klare Informationen und eine einfache Nutzung über deinen
+        persönlichen Telegram-Chat.
+      </p>
 
 
-        <div class="feature-card">
+      <div class="why-grid">
 
-          <div class="feature-number">
-            02
-          </div>
+        <article class="why-card">
 
-          <h3>
-            Nachvollziehbare Statistik
-          </h3>
+          <div class="number">01</div>
+
+          <h3>Tägliche Tipps</h3>
 
           <p>
-            Ergebnisse und vergangene Tipps werden strukturiert
-            dokumentiert und übersichtlich dargestellt.
+            Erhalte neue Sport-Tipps direkt in deinem persönlichen
+            ODDZONE Telegram-Chat.
           </p>
 
-        </div>
+        </article>
 
 
-        <div class="feature-card">
+        <article class="why-card">
 
-          <div class="feature-number">
-            03
-          </div>
+          <div class="number">02</div>
 
-          <h3>
-            Persönlicher Telegram-Chat
-          </h3>
+          <h3>Klare Struktur</h3>
+
+          <p>
+            Jeder Tipp wird übersichtlich mit den wichtigsten
+            Informationen dargestellt.
+          </p>
+
+        </article>
+
+
+        <article class="why-card">
+
+          <div class="number">03</div>
+
+          <h3>Persönlicher Telegram-Chat</h3>
 
           <p>
             Keine öffentliche Gruppe. Deine ODDZONE-Inhalte
             erhältst du direkt in deinem persönlichen Bot-Chat.
           </p>
 
-        </div>
+        </article>
 
       </div>
 
@@ -1003,166 +822,66 @@
   </section>
 
 
-  <section id="statistik" class="stats-section">
+  <!-- HOW IT WORKS -->
+  <section id="how">
 
     <div class="container">
 
-      <div class="stats-layout">
-
-        <div class="stats-content">
-
-          <div class="section-label">
-            Statistik
-          </div>
-
-          <div class="stats-main">
-            DEMO
-          </div>
-
-          <p class="stats-description">
-            Die dargestellten Werte sind aktuell nur Beispiele.
-            Sobald ODDZONE live ist, werden hier echte und
-            vollständig dokumentierte Ergebnisse verwendet.
-          </p>
-
-        </div>
-
-
-        <div class="chart">
-
-          <div class="chart-top">
-
-            <strong>
-              Beispiel Verlauf
-            </strong>
-
-            <span>
-              DEMO
-            </span>
-
-          </div>
-
-
-          <div class="bars">
-
-            <div class="bar" style="height:38%;"></div>
-            <div class="bar" style="height:45%;"></div>
-            <div class="bar" style="height:41%;"></div>
-            <div class="bar" style="height:58%;"></div>
-            <div class="bar" style="height:54%;"></div>
-            <div class="bar" style="height:70%;"></div>
-            <div class="bar" style="height:63%;"></div>
-            <div class="bar" style="height:79%;"></div>
-            <div class="bar" style="height:73%;"></div>
-            <div class="bar" style="height:91%;"></div>
-
-          </div>
-
-
-          <div class="example-picks">
-
-            <div class="pick-row">
-              <span>Fussball • Beispiel-Tipp</span>
-              <span class="pick-win">BEISPIEL</span>
-            </div>
-
-            <div class="pick-row">
-              <span>Tennis • Beispiel-Tipp</span>
-              <span class="pick-win">BEISPIEL</span>
-            </div>
-
-            <div class="pick-row">
-              <span>Basketball • Beispiel-Tipp</span>
-              <span class="pick-loss">BEISPIEL</span>
-            </div>
-
-          </div>
-
-        </div>
-
+      <div class="section-label">
+        So funktioniert's
       </div>
 
-    </div>
+      <h2 class="section-title">
+        In drei Schritten dabei.
+      </h2>
 
-  </section>
-
-
-  <section>
-
-    <div class="container">
-
-      <div class="section-heading">
-
-        <div class="section-label">
-          So funktioniert's
-        </div>
-
-        <h2>
-          In drei Schritten
-          <span style="color:var(--lime);">dabei.</span>
-        </h2>
-
-        <p>
-          Einfacher Zugang zu deinen täglichen ODDZONE VIP-Tipps.
-        </p>
-
-      </div>
+      <p class="section-text">
+        Einfacher Zugang zu deinen täglichen ODDZONE VIP-Tipps.
+      </p>
 
 
       <div class="steps">
 
-        <div class="step">
+        <article class="step">
 
-          <div class="step-number">
-            01
-          </div>
+          <div class="step-number">01</div>
 
-          <h3>
-            VIP-Zugang kaufen
-          </h3>
+          <h3>VIP-Zugang kaufen</h3>
 
           <p>
             Wähle den ODDZONE VIP-Zugang für CHF 50 pro Monat
-            und schliesse dein Abonnement ab.
+            und schliesse dein Abonnement sicher über Stripe ab.
           </p>
 
-        </div>
+        </article>
 
 
-        <div class="step">
+        <article class="step">
 
-          <div class="step-number">
-            02
-          </div>
+          <div class="step-number">02</div>
 
-          <h3>
-            Telegram verbinden
-          </h3>
+          <h3>Telegram verbinden</h3>
 
           <p>
-            Nach der Freischaltung verbindest du deinen
-            persönlichen Telegram-Account mit ODDZONE.
+            Nach der Freischaltung erhältst du deinen persönlichen
+            Zugang über den ODDZONE Telegram-Bot.
           </p>
 
-        </div>
+        </article>
 
 
-        <div class="step">
+        <article class="step">
 
-          <div class="step-number">
-            03
-          </div>
+          <div class="step-number">03</div>
 
-          <h3>
-            Tipps erhalten
-          </h3>
+          <h3>Tipps erhalten</h3>
 
           <p>
-            Fordere deine täglichen Tipps direkt in deinem
-            persönlichen ODDZONE Telegram-Chat an.
+            Deine ODDZONE VIP-Tipps werden direkt über deinen
+            persönlichen Telegram-Chat bereitgestellt.
           </p>
 
-        </div>
+        </article>
 
       </div>
 
@@ -1171,89 +890,77 @@
   </section>
 
 
-  <section id="telegram" class="telegram-section">
+  <!-- TELEGRAM -->
+  <section id="telegram">
 
     <div class="container">
 
-      <div class="telegram-card">
+      <div class="section-label">
+        Telegram
+      </div>
+
+      <h2 class="section-title">
+        Alles direkt in Telegram.
+      </h2>
+
+      <p class="section-text">
+        Keine öffentliche Gruppe und kein kompliziertes Dashboard.
+        Deine ODDZONE VIP-Tipps werden direkt über deinen
+        persönlichen Telegram-Chat bereitgestellt.
+      </p>
+
+
+      <div class="telegram-box">
 
         <div>
 
           <div class="telegram-icon">
-            ✈️
+            ✈
           </div>
 
-          <div class="section-label">
-            Deine Tipps
-          </div>
-
-          <h2>
-            Alles direkt in
-            <span>Telegram.</span>
-          </h2>
+          <h3>
+            Dein persönlicher<br>
+            ODDZONE Chat.
+          </h3>
 
           <p>
-            Keine öffentliche Gruppe und kein kompliziertes
-            Dashboard. Deine ODDZONE VIP-Tipps werden direkt
-            über deinen persönlichen Telegram-Chat bereitgestellt.
+            Deine Inhalte bleiben in deinem persönlichen Bot-Chat.
+            So erhältst du deine VIP-Tipps direkt und übersichtlich.
           </p>
 
         </div>
 
 
-        <div class="telegram-info">
+        <div class="telegram-features">
 
-          <div class="telegram-info-item">
+          <div class="telegram-feature">
 
-            <strong>
-              🟢 Tages-Tipps
-            </strong>
+            <strong>🟢 Tages-Tipps</strong>
 
             <span>
-              Fordere deine täglichen Sport-Tipps jederzeit
-              direkt im Bot an.
+              Neue Sport-Tipps direkt im Bot.
             </span>
 
           </div>
 
 
-          <div class="telegram-info-item">
+          <div class="telegram-feature">
 
-            <strong>
-              🔥 Top-Tipp
-            </strong>
+            <strong>🔥 VIP-Inhalte</strong>
 
             <span>
-              Zugriff auf den jeweils hervorgehobenen Tipp
-              des Tages.
+              Exklusive Inhalte für aktive VIP-Mitglieder.
             </span>
 
           </div>
 
 
-          <div class="telegram-info-item">
+          <div class="telegram-feature">
 
-            <strong>
-              📊 Statistik
-            </strong>
+            <strong>🔒 Persönlich</strong>
 
             <span>
-              Übersicht über dokumentierte Ergebnisse und
-              vergangene Tipps.
-            </span>
-
-          </div>
-
-
-          <div class="telegram-info-item">
-
-            <strong>
-              🔒 Persönlich
-            </strong>
-
-            <span>
-              Jeder VIP-Kunde erhält seine Inhalte in einem
-              eigenen Telegram-Chat.
+              Jeder VIP-Kunde erhält seine Inhalte individuell.
             </span>
 
           </div>
@@ -1267,60 +974,73 @@
   </section>
 
 
+  <!-- VIP -->
   <section id="vip" class="vip-section">
 
     <div class="container">
 
-      <div class="vip-card">
+      <div class="section-label">
+        ODDZONE VIP
+      </div>
 
-        <div class="section-label">
-          ODDZONE VIP
+      <h2 class="section-title">
+        ENTER THE ZONE.
+      </h2>
+
+      <p class="section-text">
+        Tägliche Sport-Tipps direkt über deinen persönlichen
+        ODDZONE Telegram-Chat.
+      </p>
+
+
+      <div class="vip-box">
+
+        <div class="vip-top">
+
+          <div>
+            <div class="eyebrow">
+              ODDZONE VIP
+            </div>
+
+            <div class="vip-title">
+              Deine<br>
+              VIP-ZONE.
+            </div>
+          </div>
+
+          <div class="price">
+            CHF 50 <span>/ Monat</span>
+          </div>
+
         </div>
 
-        <h2>
-          ENTER THE <span>ZONE.</span>
-        </h2>
 
-        <p style="color:var(--muted);">
-          Tägliche Sport-Tipps direkt über deinen persönlichen
-          ODDZONE Telegram-Chat.
-        </p>
+        <div class="vip-list">
 
-        <div class="vip-price">
-          CHF 50
-          <small>/ Monat</small>
-        </div>
-
-
-        <ul class="vip-list">
-
-          <li>
+          <div>
             Tägliche VIP Sport-Tipps
-          </li>
+          </div>
 
-          <li>
+          <div>
             Persönlicher Telegram-Bot
-          </li>
+          </div>
 
-          <li>
-            Begründungen zu den Tipps
-          </li>
+          <div>
+            Strukturierte Tipp-Informationen
+          </div>
 
-          <li>
-            Dokumentierte Ergebnisse
-          </li>
+          <div>
+            Exklusive VIP-Inhalte
+          </div>
 
-          <li>
-            Zugriff auf vergangene Tipps
-          </li>
-
-        </ul>
+        </div>
 
 
-        <!-- STRIPE 2 -->
         <a
           href="https://buy.stripe.com/9B66oGgRN5xF52Baed7ok00"
-          class="btn-primary"
+          class="btn btn-primary"
+          target="_blank"
+          rel="noopener"
         >
           VIP-ZUGANG HOLEN →
         </a>
@@ -1332,44 +1052,41 @@
   </section>
 
 
+  <!-- FAQ -->
   <section id="faq">
 
     <div class="container">
 
-      <div class="section-heading">
-
-        <div class="section-label">
-          FAQ
-        </div>
-
-        <h2>
-          Häufige Fragen
-        </h2>
-
+      <div class="section-label">
+        FAQ
       </div>
 
+      <h2 class="section-title">
+        Häufige Fragen.
+      </h2>
 
-      <div class="faq">
 
-        <div class="faq-item">
+      <div class="faq-list">
 
-          <h3>
+        <details>
+
+          <summary>
             Gibt es eine Gewinn-Garantie?
-          </h3>
+          </summary>
 
           <p>
             Nein. Sportwetten sind mit Risiko verbunden.
             Vergangene Ergebnisse garantieren keine zukünftigen Gewinne.
           </p>
 
-        </div>
+        </details>
 
 
-        <div class="faq-item">
+        <details>
 
-          <h3>
+          <summary>
             Welche Sportarten werden abgedeckt?
-          </h3>
+          </summary>
 
           <p>
             Je nach verfügbarem Angebot können unter anderem
@@ -1377,14 +1094,14 @@
             Sportarten enthalten sein.
           </p>
 
-        </div>
+        </details>
 
 
-        <div class="faq-item">
+        <details>
 
-          <h3>
+          <summary>
             Wie erhalte ich die Tipps?
-          </h3>
+          </summary>
 
           <p>
             Nach erfolgreicher Freischaltung erhältst du deine
@@ -1392,52 +1109,50 @@
             Telegram-Chat.
           </p>
 
-        </div>
+        </details>
 
 
-        <div class="faq-item">
+        <details>
 
-          <h3>
+          <summary>
             Gibt es eine öffentliche Telegram-Gruppe?
-          </h3>
+          </summary>
 
           <p>
             Nein. ODDZONE setzt auf persönliche Telegram-Chats.
             Jeder VIP-Kunde erhält seine Inhalte individuell.
           </p>
 
-        </div>
+        </details>
 
 
-        <div class="faq-item">
+        <details>
 
-          <h3>
+          <summary>
             Kann ich jederzeit kündigen?
-          </h3>
+          </summary>
 
           <p>
-            Die konkreten Kündigungsbedingungen hängen vom
-            eingesetzten Zahlungsanbieter und deinem gewählten
-            Abonnement ab.
+            Die konkreten Kündigungsbedingungen hängen vom eingesetzten
+            Zahlungsanbieter und deinem gewählten Abonnement ab.
           </p>
 
-        </div>
+        </details>
 
 
-        <div class="faq-item">
+        <details>
 
-          <h3>
+          <summary>
             Ist ODDZONE für Minderjährige geeignet?
-          </h3>
+          </summary>
 
           <p>
-            Nein. Sportwetten sind nur für Personen geeignet,
-            die das gesetzlich vorgeschriebene Mindestalter
-            erreicht haben. Beachte die geltenden Regeln an
-            deinem Wohnort.
+            Nein. Sportwetten sind nur für Personen geeignet, die das
+            gesetzlich vorgeschriebene Mindestalter erreicht haben.
+            Beachte die geltenden Regeln an deinem Wohnort.
           </p>
 
-        </div>
+        </details>
 
       </div>
 
@@ -1446,6 +1161,7 @@
   </section>
 
 
+  <!-- FINAL CTA -->
   <section class="final-cta">
 
     <div class="container">
@@ -1455,19 +1171,20 @@
       </div>
 
       <h2>
-        READY FOR YOUR<br>
-        <span>ZONE?</span>
+        READY FOR<br>
+        YOUR <span>ZONE?</span>
       </h2>
 
       <p>
-        Sichere dir deinen ODDZONE VIP-Zugang und erhalte
-        deine täglichen Sport-Tipps direkt über Telegram.
+        Sichere dir deinen ODDZONE VIP-Zugang und erhalte deine
+        täglichen Sport-Tipps direkt über Telegram.
       </p>
 
-      <!-- STRIPE 3 -->
       <a
         href="https://buy.stripe.com/9B66oGgRN5xF52Baed7ok00"
-        class="btn-primary"
+        class="btn btn-primary"
+        target="_blank"
+        rel="noopener"
       >
         ODDZONE VIP →
       </a>
@@ -1477,6 +1194,7 @@
   </section>
 
 
+  <!-- FOOTER -->
   <footer>
 
     <div class="container footer-inner">
@@ -1485,9 +1203,12 @@
         ODD<span>ZONE</span>
       </div>
 
-      <div class="footer-text">
-        © 2026 ODDZONE. Alle Rechte vorbehalten.<br>
+      <div class="risk">
         Sportwetten sind mit finanziellen Risiken verbunden.
+      </div>
+
+      <div>
+        © 2026 ODDZONE. Alle Rechte vorbehalten.
       </div>
 
     </div>
