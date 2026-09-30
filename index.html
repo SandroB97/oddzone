@@ -3,240 +3,629 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ODDZONE — Your Sports. Your Zone.</title>
+
+  <title>ODDZONE VIP — Your Sports. Your Zone.</title>
+  <meta
+    name="description"
+    content="ODDZONE VIP — Exklusive Sport-Tipps, Analysen und Updates für Mitglieder."
+  >
+
   <style>
+    :root {
+      --bg: #070707;
+      --bg-soft: #0d0d0d;
+      --card: #111111;
+      --border: #202020;
+      --text: #f5f5f5;
+      --muted: #8d8d8d;
+      --accent: #b7ff00;
+      --accent-soft: rgba(183,255,0,.10);
+    }
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #080808;
-      color: #ffffff;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     .container {
-      width: min(1100px, 90%);
-      margin: 0 auto;
+      width: min(1120px, 90%);
+      margin: auto;
     }
 
-    header {
-      padding: 25px 0;
-      border-bottom: 1px solid #1f1f1f;
+    /* NAV */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7,7,7,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .logo {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 2px;
+      font-size: 25px;
+      font-weight: 950;
+      letter-spacing: -1px;
     }
 
     .logo span {
-      color: #b8ff00;
+      color: var(--accent);
     }
 
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-button {
+      padding: 11px 18px;
+      background: var(--accent);
+      color: #000;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    /* HERO */
+
     .hero {
-      min-height: 80vh;
+      position: relative;
+      min-height: 720px;
       display: flex;
       align-items: center;
       text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      background: var(--accent);
+      opacity: .055;
+      filter: blur(140px);
+      border-radius: 50%;
+      left: 50%;
+      top: 35%;
+      transform: translate(-50%, -50%);
     }
 
     .hero-content {
-      width: 100%;
+      position: relative;
+      z-index: 2;
     }
 
-    .badge {
-      display: inline-block;
-      color: #b8ff00;
-      border: 1px solid #b8ff00;
-      padding: 8px 16px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 25px;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #303030;
+      background: #0d0d0d;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 28px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
     }
 
     h1 {
-      font-size: clamp(55px, 12vw, 120px);
-      line-height: 0.9;
-      font-weight: 900;
-      letter-spacing: -5px;
+      font-size: clamp(54px, 10vw, 112px);
+      line-height: .88;
+      letter-spacing: -6px;
+      font-weight: 950;
+      text-transform: uppercase;
     }
 
-    .hero h1 span {
-      color: #b8ff00;
+    h1 span {
+      color: var(--accent);
     }
 
-    .subtitle {
+    .hero-text {
       max-width: 650px;
-      margin: 30px auto;
-      font-size: 20px;
-      color: #aaaaaa;
+      margin: 30px auto 0;
+      color: var(--muted);
+      font-size: 18px;
     }
 
-    .price {
-      font-size: 38px;
-      font-weight: 900;
-      margin: 25px 0;
+    .hero-actions {
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .price small {
-      font-size: 16px;
-      color: #888888;
-      font-weight: normal;
-    }
-
-    .button {
-      display: inline-block;
-      background: #b8ff00;
-      color: #000000;
-      padding: 16px 35px;
+    .primary-btn {
+      background: var(--accent);
+      color: #000;
+      padding: 16px 27px;
       border-radius: 8px;
-      text-decoration: none;
-      font-weight: 900;
-      font-size: 16px;
-      transition: 0.2s;
+      font-weight: 950;
+      font-size: 14px;
+      transition: .2s;
     }
 
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(184,255,0,0.2);
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(183,255,0,.16);
     }
+
+    .secondary-btn {
+      border: 1px solid #333;
+      padding: 16px 27px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .secondary-btn:hover {
+      border-color: #555;
+      color: white;
+    }
+
+    .price-note {
+      margin-top: 18px;
+      color: #666;
+      font-size: 13px;
+    }
+
+    /* TRUST BAR */
+
+    .trust {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: #0a0a0a;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+    }
+
+    .trust-item {
+      padding: 25px 15px;
+      border-right: 1px solid var(--border);
+    }
+
+    .trust-item:last-child {
+      border-right: 0;
+    }
+
+    .trust-number {
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .trust-label {
+      color: #666;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    /* SECTIONS */
 
     section {
-      padding: 90px 0;
-      border-top: 1px solid #1a1a1a;
+      padding: 110px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      max-width: 700px;
+      margin-bottom: 55px;
+    }
+
+    .section-tag {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
     }
 
     .section-title {
-      font-size: 42px;
-      font-weight: 900;
-      margin-bottom: 50px;
-      text-align: center;
+      font-size: clamp(36px, 6vw, 60px);
+      line-height: .95;
+      letter-spacing: -3px;
+      font-weight: 950;
     }
 
-    .cards {
+    .section-description {
+      margin-top: 18px;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    /* FEATURES */
+
+    .features {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      background: linear-gradient(145deg, #121212, #0b0b0b);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 32px;
+      transition: .2s;
+    }
+
+    .feature:hover {
+      border-color: #383838;
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      border: 1px solid rgba(183,255,0,.18);
+      border-radius: 10px;
+      font-size: 21px;
+      margin-bottom: 22px;
+    }
+
+    .feature h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* PROCESS */
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .process-card {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 30px;
+    }
+
+    .process-number {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 35px;
+    }
+
+    .process-card h3 {
+      font-size: 21px;
+      margin-bottom: 9px;
+    }
+
+    .process-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* MEMBERSHIP */
+
+    .membership {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .membership-copy p {
+      color: var(--muted);
+      margin-top: 20px;
+      max-width: 580px;
+    }
+
+    .membership-list {
+      list-style: none;
+      margin-top: 28px;
+    }
+
+    .membership-list li {
+      padding: 10px 0;
+      color: #ddd;
+      border-bottom: 1px solid #1b1b1b;
+    }
+
+    .membership-list li::first-letter {
+      color: var(--accent);
+    }
+
+    .price-card {
+      background: linear-gradient(150deg, #151515, #0b0b0b);
+      border: 1px solid #303030;
+      border-radius: 18px;
+      padding: 36px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.35);
+    }
+
+    .price-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .vip-label {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .recommended {
+      background: var(--accent);
+      color: #000;
+      padding: 5px 8px;
+      border-radius: 5px;
+      font-size: 9px;
+      font-weight: 950;
+    }
+
+    .price-big {
+      font-size: 55px;
+      font-weight: 950;
+      letter-spacing: -3px;
+    }
+
+    .price-big span {
+      color: #666;
+      font-size: 15px;
+      letter-spacing: 0;
+      font-weight: 500;
+    }
+
+    .price-card hr {
+      border: 0;
+      border-top: 1px solid #242424;
+      margin: 25px 0;
+    }
+
+    .price-card .primary-btn {
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* FAQ */
+
+    .faq {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    details {
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 800;
+      display: flex;
+      justify-content: space-between;
       gap: 20px;
     }
 
-    .card {
-      background: #111111;
-      border: 1px solid #222222;
-      padding: 30px;
-      border-radius: 14px;
+    summary::after {
+      content: "+";
+      color: var(--accent);
+      font-size: 20px;
     }
 
-    .icon {
-      font-size: 32px;
-      margin-bottom: 20px;
+    details[open] summary::after {
+      content: "−";
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 19px;
+    details p {
+      color: var(--muted);
+      margin-top: 15px;
+      font-size: 14px;
+      max-width: 700px;
     }
 
-    .card p {
-      color: #888888;
-      font-size: 15px;
-    }
+    /* CTA */
 
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .step {
-      padding: 30px;
-      background: #111111;
-      border-radius: 14px;
-      border: 1px solid #222222;
-    }
-
-    .number {
-      color: #b8ff00;
-      font-size: 15px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-
-    .pricing {
-      max-width: 500px;
-      margin: auto;
-      background: #111111;
-      border: 1px solid #333333;
-      border-radius: 18px;
-      padding: 45px;
+    .final-cta {
       text-align: center;
+      padding: 130px 0;
     }
 
-    .pricing h3 {
-      font-size: 26px;
-      margin-bottom: 15px;
+    .final-cta h2 {
+      font-size: clamp(42px, 8vw, 80px);
+      line-height: .9;
+      letter-spacing: -4px;
+      font-weight: 950;
     }
 
-    .pricing .price {
-      font-size: 50px;
-      color: #b8ff00;
+    .final-cta h2 span {
+      color: var(--accent);
     }
 
-    .features {
-      list-style: none;
-      text-align: left;
-      margin: 30px 0;
+    .final-cta p {
+      color: var(--muted);
+      max-width: 550px;
+      margin: 22px auto 30px;
     }
 
-    .features li {
-      padding: 10px 0;
-      border-bottom: 1px solid #222222;
-    }
+    /* FOOTER */
 
     footer {
       padding: 35px 0;
-      text-align: center;
-      color: #666666;
-      font-size: 14px;
-      border-top: 1px solid #1a1a1a;
+      color: #555;
+      font-size: 12px;
     }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      color: #888;
+      font-weight: 900;
+    }
+
+    .footer-logo span {
+      color: var(--accent);
+    }
+
+    .disclaimer {
+      max-width: 650px;
+      margin-top: 18px;
+      color: #444;
+      font-size: 11px;
+    }
+
+    /* MOBILE */
 
     @media (max-width: 800px) {
-      .cards,
-      .steps {
-        grid-template-columns: 1fr 1fr;
+
+      .nav-links {
+        display: none;
       }
 
-      h1 {
-        letter-spacing: -3px;
-      }
-    }
-
-    @media (max-width: 550px) {
-      .cards,
-      .steps {
-        grid-template-columns: 1fr;
+      .nav-button {
+        padding: 9px 13px;
       }
 
       .hero {
-        min-height: 75vh;
+        min-height: 650px;
       }
 
-      .subtitle {
-        font-size: 17px;
+      h1 {
+        letter-spacing: -4px;
+      }
+
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-item {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .trust-item:last-child {
+        border-bottom: 0;
+      }
+
+      .features,
+      .process,
+      .membership {
+        grid-template-columns: 1fr;
+      }
+
+      .membership {
+        gap: 45px;
       }
 
       section {
-        padding: 65px 0;
+        padding: 80px 0;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .container {
+        width: 88%;
       }
 
-      .pricing {
-        padding: 30px 20px;
+      .logo {
+        font-size: 21px;
+      }
+
+      h1 {
+        font-size: 52px;
+        letter-spacing: -3px;
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .section-title {
+        letter-spacing: -2px;
+      }
+
+      .feature,
+      .process-card,
+      .price-card {
+        padding: 25px;
+      }
+
+      .price-big {
+        font-size: 48px;
       }
     }
   </style>
@@ -244,80 +633,138 @@
 
 <body>
 
-  <header>
-    <div class="container">
-      <div class="logo">ODD<span>ZONE</span></div>
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="logo">ODD<span>ZONE</span></a>
+
+      <div class="nav-links">
+        <a href="#vorteile">Vorteile</a>
+        <a href="#ablauf">So funktioniert's</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+      <a href="#vip" class="nav-button">VIP WERDEN</a>
     </div>
-  </header>
+  </nav>
+
 
   <main>
+
+    <!-- HERO -->
 
     <section class="hero">
       <div class="container hero-content">
 
-        <div class="badge">ODDZONE VIP</div>
+        <div class="eyebrow">
+          <span class="dot"></span>
+          ODDZONE VIP
+        </div>
 
         <h1>
           YOUR SPORTS.<br>
           YOUR <span>ZONE.</span>
         </h1>
 
-        <p class="subtitle">
-          Exklusive Sport-Tipps und Analysen für Mitglieder.
-          Übersichtlich. Direkt. Transparent.
+        <p class="hero-text">
+          Exklusive Sport-Tipps, Analysen und schnelle Updates —
+          direkt für unsere VIP-Mitglieder.
         </p>
 
-        <div class="price">
-          CHF 50 <small>/ Monat</small>
+        <div class="hero-actions">
+          <a href="#vip" class="primary-btn">
+            VIP WERDEN →
+          </a>
+
+          <a href="#vorteile" class="secondary-btn">
+            MEHR ERFAHREN
+          </a>
         </div>
 
-        <a href="#pricing" class="button">
-          VIP WERDEN
-        </a>
+        <div class="price-note">
+          ODDZONE VIP · CHF 50 / Monat
+        </div>
 
       </div>
     </section>
 
-    <section>
+
+    <!-- TRUST -->
+
+    <div class="trust">
+      <div class="container trust-grid">
+
+        <div class="trust-item">
+          <div class="trust-number">VIP</div>
+          <div class="trust-label">Private Community</div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-number">LIVE</div>
+          <div class="trust-label">Direkte Updates</div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-number">DATA</div>
+          <div class="trust-label">Nachvollziehbare Statistik</div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- FEATURES -->
+
+    <section id="vorteile">
       <div class="container">
 
-        <h2 class="section-title">Was bekommst du?</h2>
+        <div class="section-head">
+          <div class="section-tag">ODDZONE EXPERIENCE</div>
 
-        <div class="cards">
+          <h2 class="section-title">
+            Mehr als nur<br>ein Tipp.
+          </h2>
 
-          <div class="card">
-            <div class="icon">🔥</div>
-            <h3>VIP Telegram</h3>
+          <p class="section-description">
+            ODDZONE bündelt ausgewählte Sport-Tipps und Informationen
+            in einer übersichtlichen VIP-Community.
+          </p>
+        </div>
+
+        <div class="features">
+
+          <div class="feature">
+            <div class="feature-icon">🔥</div>
+            <h3>Private VIP Community</h3>
             <p>
-              Direkter Zugang zu unserem privaten
-              Telegram-Bereich.
+              Zugang zu unserem privaten Mitgliederbereich
+              und den ODDZONE-Updates.
             </p>
           </div>
 
-          <div class="card">
-            <div class="icon">📊</div>
-            <h3>Exklusive Tipps</h3>
+          <div class="feature">
+            <div class="feature-icon">📊</div>
+            <h3>Ausgewählte Tipps</h3>
             <p>
-              Ausgewählte Sport-Tipps übersichtlich
-              an einem Ort.
+              Die veröffentlichten Tipps werden übersichtlich
+              für Mitglieder bereitgestellt.
             </p>
           </div>
 
-          <div class="card">
-            <div class="icon">⚡</div>
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
             <h3>Schnelle Updates</h3>
             <p>
-              Neue Tipps werden direkt an Mitglieder
-              kommuniziert.
+              Neue Informationen und veröffentlichte Tipps
+              werden direkt kommuniziert.
             </p>
           </div>
 
-          <div class="card">
-            <div class="icon">📈</div>
-            <h3>Transparente Statistik</h3>
+          <div class="feature">
+            <div class="feature-icon">📈</div>
+            <h3>Transparenz</h3>
             <p>
-              Gewinne und Verluste werden
-              nachvollziehbar dokumentiert.
+              Ergebnisse und Statistiken sollen nachvollziehbar
+              dokumentiert werden.
             </p>
           </div>
 
@@ -326,36 +773,45 @@
       </div>
     </section>
 
-    <section>
+
+    <!-- PROCESS -->
+
+    <section id="ablauf">
       <div class="container">
 
-        <h2 class="section-title">So funktioniert's</h2>
+        <div class="section-head">
+          <div class="section-tag">EINFACHER ABLAUF</div>
 
-        <div class="steps">
+          <h2 class="section-title">
+            In drei<br>Schritten.
+          </h2>
+        </div>
 
-          <div class="step">
-            <div class="number">01</div>
+        <div class="process">
+
+          <div class="process-card">
+            <div class="process-number">01 — JOIN</div>
             <h3>VIP werden</h3>
             <p>
-              Wähle dein VIP-Abo und werde Mitglied.
+              Wähle die ODDZONE VIP-Mitgliedschaft.
             </p>
           </div>
 
-          <div class="step">
-            <div class="number">02</div>
+          <div class="process-card">
+            <div class="process-number">02 — ACCESS</div>
             <h3>Zugang erhalten</h3>
             <p>
-              Nach erfolgreicher Zahlung erhältst
-              du Zugang zum Mitgliederbereich.
+              Nach erfolgreicher Zahlung wird dein
+              Mitgliederzugang freigeschaltet.
             </p>
           </div>
 
-          <div class="step">
-            <div class="number">03</div>
-            <h3>Tipps erhalten</h3>
+          <div class="process-card">
+            <div class="process-number">03 — RECEIVE</div>
+            <h3>Updates erhalten</h3>
             <p>
-              Neue Tipps und Updates landen direkt
-              bei dir.
+              Neue Tipps und Informationen werden
+              direkt an Mitglieder kommuniziert.
             </p>
           </div>
 
@@ -364,45 +820,163 @@
       </div>
     </section>
 
-    <section id="pricing">
 
-      <div class="container">
+    <!-- MEMBERSHIP -->
 
-        <h2 class="section-title">ODDZONE VIP</h2>
+    <section id="vip">
+      <div class="container membership">
 
-        <div class="pricing">
+        <div class="membership-copy">
 
-          <h3>VIP Membership</h3>
+          <div class="section-tag">ODDZONE VIP</div>
 
-          <div class="price">
-            CHF 50
-          </div>
+          <h2 class="section-title">
+            Deine Zone.<br>
+            Dein Zugang.
+          </h2>
 
-          <p style="color:#888;">
-            pro Monat
+          <p>
+            Eine Mitgliedschaft für Sportfans, die ausgewählte
+            Tipps und Updates an einem zentralen Ort erhalten möchten.
           </p>
 
-          <ul class="features">
-            <li>✓ Private Telegram-Community</li>
+          <ul class="membership-list">
+            <li>✓ Private VIP-Community</li>
             <li>✓ Exklusive Sport-Tipps</li>
-            <li>✓ Schnelle Benachrichtigungen</li>
-            <li>✓ Transparente Statistiken</li>
+            <li>✓ Direkte Benachrichtigungen</li>
+            <li>✓ Dokumentierte Statistiken</li>
           </ul>
 
-          <a href="#" class="button">
-            JETZT VIP WERDEN
+        </div>
+
+
+        <div class="price-card">
+
+          <div class="price-card-top">
+            <div class="vip-label">ODDZONE VIP</div>
+            <div class="recommended">MEMBERSHIP</div>
+          </div>
+
+          <div class="price-big">
+            CHF 50 <span>/ Monat</span>
+          </div>
+
+          <hr>
+
+          <p style="color:#888;font-size:13px;margin-bottom:22px;">
+            Monatliche Mitgliedschaft. Jederzeit kündbar,
+            sobald das Zahlungssystem aktiviert ist.
+          </p>
+
+          <a href="#" class="primary-btn">
+            VIP WERDEN →
           </a>
 
         </div>
 
       </div>
+    </section>
 
+
+    <!-- FAQ -->
+
+    <section id="faq">
+      <div class="container">
+
+        <div class="section-head">
+          <div class="section-tag">FAQ</div>
+
+          <h2 class="section-title">
+            Fragen?
+          </h2>
+        </div>
+
+        <div class="faq">
+
+          <details>
+            <summary>Was ist ODDZONE?</summary>
+            <p>
+              ODDZONE ist eine kostenpflichtige VIP-Community
+              rund um Sport-Tipps und Analysen.
+            </p>
+          </details>
+
+          <details>
+            <summary>Was erhalte ich als VIP-Mitglied?</summary>
+            <p>
+              Mitglieder erhalten Zugang zu den vorgesehenen
+              VIP-Inhalten, Updates und der privaten Community.
+            </p>
+          </details>
+
+          <details>
+            <summary>Wie funktioniert der Zugang?</summary>
+            <p>
+              Nach erfolgreicher Zahlung wird der Zugang
+              automatisch freigeschaltet, sobald das
+              Zahlungssystem vollständig eingerichtet ist.
+            </p>
+          </details>
+
+          <details>
+            <summary>Gibt es eine Gewinngarantie?</summary>
+            <p>
+              Nein. Sport-Tipps sind Einschätzungen und keine
+              Garantie für Gewinne. Bei Sportwetten besteht
+              ein finanzielles Risiko.
+            </p>
+          </details>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FINAL CTA -->
+
+    <section class="final-cta">
+      <div class="container">
+
+        <h2>
+          WELCOME TO<br>
+          <span>ODDZONE.</span>
+        </h2>
+
+        <p>
+          Deine Sports. Deine Zone. Dein VIP-Zugang.
+        </p>
+
+        <a href="#vip" class="primary-btn">
+          ODDZONE VIP →
+        </a>
+
+      </div>
     </section>
 
   </main>
 
+
   <footer>
-    ©️ 2026 ODDZONE — Your Sports. Your Zone.
+    <div class="container">
+
+      <div class="footer-inner">
+        <div class="footer-logo">
+          ODD<span>ZONE</span>
+        </div>
+
+        <div>
+          ©️ 2026 ODDZONE
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        Hinweis: Sport-Tipps stellen keine Garantie für Gewinne dar.
+        Sportwetten können zu finanziellen Verlusten führen.
+        Nur für Personen, die gesetzlich zur Teilnahme berechtigt sind.
+      </div>
+
+    </div>
   </footer>
 
 </body>
