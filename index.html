@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -6,19 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>ODDZONE – Sports Picks & VIP</title>
-  <meta
-    name="description"
-    content="ODDZONE – Exklusive Sport-Tipps, Statistiken und tägliche VIP-Picks."
-  >
 
   <style>
     :root {
       --bg: #050505;
       --bg-soft: #0b0b0b;
       --card: #101010;
-      --card-2: #151515;
       --lime: #b7ff00;
-      --lime-dark: #83b900;
       --white: #ffffff;
       --muted: #9a9a9a;
       --border: rgba(255,255,255,0.08);
@@ -57,10 +50,6 @@
       width: min(1180px, 92%);
       margin: 0 auto;
     }
-
-    /* =========================
-       NAVIGATION
-    ========================= */
 
     nav {
       position: sticky;
@@ -119,10 +108,6 @@
       background: #d1ff4d;
       transform: translateY(-1px);
     }
-
-    /* =========================
-       HERO
-    ========================= */
 
     .hero {
       position: relative;
@@ -219,6 +204,7 @@
       font-weight: 900;
       font-size: 14px;
       transition: 0.2s ease;
+      display: inline-block;
     }
 
     .btn-primary:hover {
@@ -235,16 +221,13 @@
       font-weight: 800;
       font-size: 14px;
       transition: 0.2s ease;
+      display: inline-block;
     }
 
     .btn-secondary:hover {
       border-color: var(--lime);
       color: var(--lime);
     }
-
-    /* =========================
-       HERO IMAGE
-    ========================= */
 
     .hero-visual {
       position: relative;
@@ -267,30 +250,12 @@
         0 0 80px rgba(183,255,0,0.08);
     }
 
-    .hero-image-wrap::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(183,255,0,0.10),
-        transparent 35%,
-        transparent 70%,
-        rgba(183,255,0,0.06)
-      );
-      pointer-events: none;
-    }
-
     .hero-image {
       width: 100%;
       height: auto;
       min-height: 500px;
       object-fit: cover;
     }
-
-    /* =========================
-       TRUST BAR
-    ========================= */
 
     .trust-bar {
       border-top: 1px solid var(--border);
@@ -331,10 +296,6 @@
       margin-top: 3px;
     }
 
-    /* =========================
-       GENERAL SECTIONS
-    ========================= */
-
     section {
       padding: 110px 0;
     }
@@ -364,10 +325,6 @@
       color: var(--muted);
       font-size: 16px;
     }
-
-    /* =========================
-       FEATURES
-    ========================= */
 
     .features {
       display: grid;
@@ -404,10 +361,6 @@
       color: var(--muted);
       font-size: 14px;
     }
-
-    /* =========================
-       STATISTICS
-    ========================= */
 
     .stats-section {
       background: #080808;
@@ -464,15 +417,13 @@
       align-items: end;
       gap: 12px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding-bottom: 0;
     }
 
     .bar {
       flex: 1;
-      background: linear-gradient(to top, var(--lime-dark), var(--lime));
+      background: linear-gradient(to top, #83b900, var(--lime));
       border-radius: 5px 5px 0 0;
       min-width: 8px;
-      box-shadow: 0 0 18px rgba(183,255,0,0.12);
     }
 
     .example-picks {
@@ -501,10 +452,6 @@
       color: var(--red);
       font-weight: 900;
     }
-
-    /* =========================
-       HOW IT WORKS
-    ========================= */
 
     .steps {
       display: grid;
@@ -537,10 +484,6 @@
       color: var(--muted);
       font-size: 14px;
     }
-
-    /* =========================
-       TELEGRAM
-    ========================= */
 
     .telegram-section {
       background: #080808;
@@ -611,10 +554,6 @@
       font-size: 13px;
     }
 
-    /* =========================
-       VIP
-    ========================= */
-
     .vip-section {
       background:
         radial-gradient(circle at 50% 0%, rgba(183,255,0,0.08), transparent 40%),
@@ -629,7 +568,6 @@
       background: linear-gradient(145deg, #121212, #090909);
       border: 1px solid rgba(183,255,0,0.28);
       border-radius: 22px;
-      box-shadow: 0 30px 100px rgba(0,0,0,0.45);
     }
 
     .vip-card h2 {
@@ -678,10 +616,6 @@
       margin-right: 10px;
     }
 
-    /* =========================
-       FAQ
-    ========================= */
-
     .faq {
       max-width: 850px;
       margin: 0 auto;
@@ -701,10 +635,6 @@
       color: var(--muted);
       font-size: 14px;
     }
-
-    /* =========================
-       CTA
-    ========================= */
 
     .final-cta {
       padding: 120px 0;
@@ -731,10 +661,6 @@
       max-width: 550px;
       margin: 0 auto 30px;
     }
-
-    /* =========================
-       FOOTER
-    ========================= */
 
     footer {
       border-top: 1px solid var(--border);
@@ -764,10 +690,6 @@
       text-align: right;
     }
 
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
     @media (max-width: 900px) {
 
       .nav-links {
@@ -795,10 +717,6 @@
 
       .hero-visual {
         margin-top: 15px;
-      }
-
-      .hero-image-wrap {
-        max-width: 650px;
       }
 
       .features,
@@ -838,10 +756,6 @@
 
     @media (max-width: 600px) {
 
-      .container {
-        width: min(92%, 520px);
-      }
-
       .hero h1 {
         font-size: 53px;
         letter-spacing: -3px;
@@ -851,20 +765,12 @@
         font-size: 16px;
       }
 
-      .hero-image-wrap {
-        border-radius: 16px;
-      }
-
       .hero-image {
         min-height: 350px;
       }
 
       section {
         padding: 80px 0;
-      }
-
-      .section-heading h2 {
-        letter-spacing: -2px;
       }
 
       .vip-card {
@@ -901,10 +807,6 @@
 
 <body>
 
-  <!-- =========================
-       NAVIGATION
-  ========================= -->
-
   <nav>
     <div class="container nav-inner">
 
@@ -920,17 +822,17 @@
         <a href="#faq">FAQ</a>
       </div>
 
-      <a href="#vip" class="nav-button">
+      <!-- STRIPE 1 -->
+      <a
+        href="https://buy.stripe.com/9B66oGgRN5xF52Baed7ok00"
+        class="nav-button"
+      >
         VIP-ZUGANG
       </a>
 
     </div>
   </nav>
 
-
-  <!-- =========================
-       HERO
-  ========================= -->
 
   <header class="hero">
 
@@ -949,7 +851,7 @@
 
         <p class="hero-text">
           Strukturierte Sport-Tipps, nachvollziehbare Statistiken
-          und exklusive tägliche VIP-Tipps für Fussball, Tennis,
+          und exklusive tägliche VIP-Picks für Fussball, Tennis,
           Basketball, Eishockey und mehr.
         </p>
 
@@ -966,9 +868,6 @@
         </div>
 
       </div>
-
-
-      <!-- HERO IMAGE -->
 
       <div class="hero-visual">
 
@@ -988,10 +887,6 @@
 
   </header>
 
-
-  <!-- =========================
-       TRUST BAR
-  ========================= -->
 
   <div class="trust-bar">
 
@@ -1021,10 +916,6 @@
 
   </div>
 
-
-  <!-- =========================
-       WARUM ODDZONE
-  ========================= -->
 
   <section id="warum">
 
@@ -1112,10 +1003,6 @@
   </section>
 
 
-  <!-- =========================
-       STATISTIK
-  ========================= -->
-
   <section id="statistik" class="stats-section">
 
     <div class="container">
@@ -1200,10 +1087,6 @@
   </section>
 
 
-  <!-- =========================
-       HOW IT WORKS
-  ========================= -->
-
   <section>
 
     <div class="container">
@@ -1287,10 +1170,6 @@
 
   </section>
 
-
-  <!-- =========================
-       TELEGRAM
-  ========================= -->
 
   <section id="telegram" class="telegram-section">
 
@@ -1388,10 +1267,6 @@
   </section>
 
 
-  <!-- =========================
-       VIP
-  ========================= -->
-
   <section id="vip" class="vip-section">
 
     <div class="container">
@@ -1442,7 +1317,11 @@
         </ul>
 
 
-        <a href="#" class="btn-primary">
+        <!-- STRIPE 2 -->
+        <a
+          href="https://buy.stripe.com/9B66oGgRN5xF52Baed7ok00"
+          class="btn-primary"
+        >
           VIP-ZUGANG HOLEN →
         </a>
 
@@ -1452,10 +1331,6 @@
 
   </section>
 
-
-  <!-- =========================
-       FAQ
-  ========================= -->
 
   <section id="faq">
 
@@ -1571,10 +1446,6 @@
   </section>
 
 
-  <!-- =========================
-       FINAL CTA
-  ========================= -->
-
   <section class="final-cta">
 
     <div class="container">
@@ -1593,7 +1464,11 @@
         deine täglichen Sport-Tipps direkt über Telegram.
       </p>
 
-      <a href="#vip" class="btn-primary">
+      <!-- STRIPE 3 -->
+      <a
+        href="https://buy.stripe.com/9B66oGgRN5xF52Baed7ok00"
+        class="btn-primary"
+      >
         ODDZONE VIP →
       </a>
 
@@ -1601,10 +1476,6 @@
 
   </section>
 
-
-  <!-- =========================
-       FOOTER
-  ========================= -->
 
   <footer>
 
@@ -1615,7 +1486,7 @@
       </div>
 
       <div class="footer-text">
-        ©️ 2026 ODDZONE. Alle Rechte vorbehalten.<br>
+        © 2026 ODDZONE. Alle Rechte vorbehalten.<br>
         Sportwetten sind mit finanziellen Risiken verbunden.
       </div>
 
@@ -1625,4 +1496,3 @@
 
 </body>
 </html>
-```
