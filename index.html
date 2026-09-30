@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,7 +8,7 @@
   <title>ODDZONE – Sports Picks & VIP</title>
   <meta
     name="description"
-    content="ODDZONE – Sports Picks, Statistiken und exklusive VIP-Tipps."
+    content="ODDZONE – Exklusive Sport-Tipps, Statistiken und tägliche VIP-Picks."
   >
 
   <style>
@@ -287,22 +288,6 @@
       object-fit: cover;
     }
 
-    .hero-image-label {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      z-index: 3;
-      background: rgba(5,5,5,0.82);
-      border: 1px solid rgba(183,255,0,0.3);
-      color: var(--lime);
-      padding: 9px 13px;
-      border-radius: 8px;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      backdrop-filter: blur(8px);
-    }
-
     /* =========================
        TRUST BAR
     ========================= */
@@ -554,6 +539,79 @@
     }
 
     /* =========================
+       TELEGRAM
+    ========================= */
+
+    .telegram-section {
+      background: #080808;
+    }
+
+    .telegram-card {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+      padding: 45px;
+      background: linear-gradient(145deg, #111111, #090909);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .telegram-icon {
+      width: 90px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      background: rgba(183,255,0,0.08);
+      border: 1px solid rgba(183,255,0,0.25);
+      color: var(--lime);
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .telegram-card h2 {
+      font-size: 38px;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 15px;
+    }
+
+    .telegram-card h2 span {
+      color: var(--lime);
+    }
+
+    .telegram-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .telegram-info {
+      display: grid;
+      gap: 12px;
+    }
+
+    .telegram-info-item {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #0d0d0d;
+    }
+
+    .telegram-info-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .telegram-info-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================
        VIP
     ========================= */
 
@@ -772,6 +830,10 @@
       .trust-item:nth-child(4) {
         border-top: 1px solid var(--border);
       }
+
+      .telegram-card {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 600px) {
@@ -825,6 +887,14 @@
       .footer-text {
         text-align: center;
       }
+
+      .telegram-card {
+        padding: 30px 20px;
+      }
+
+      .telegram-card h2 {
+        font-size: 32px;
+      }
     }
   </style>
 </head>
@@ -845,12 +915,13 @@
       <div class="nav-links">
         <a href="#warum">Warum ODDZONE</a>
         <a href="#statistik">Statistik</a>
+        <a href="#telegram">Telegram</a>
         <a href="#vip">VIP</a>
         <a href="#faq">FAQ</a>
       </div>
 
       <a href="#vip" class="nav-button">
-        VIP JOINEN
+        VIP-ZUGANG
       </a>
 
     </div>
@@ -877,8 +948,8 @@
         </h1>
 
         <p class="hero-text">
-          Professionelle Sports Picks, transparente Statistiken
-          und exklusive VIP-Tipps für Fussball, Tennis,
+          Strukturierte Sport-Tipps, nachvollziehbare Statistiken
+          und exklusive tägliche VIP-Tipps für Fussball, Tennis,
           Basketball, Eishockey und mehr.
         </p>
 
@@ -905,13 +976,9 @@
 
           <img
             src="./IMG_7465.png"
-            alt="ODDZONE Sports Picks"
+            alt="ODDZONE Sport-Tipps"
             class="hero-image"
           >
-
-          <div class="hero-image-label">
-            ODDZONE • SPORTS PICKS
-          </div>
 
         </div>
 
@@ -932,17 +999,17 @@
 
       <div class="trust-item">
         <strong>VIP</strong>
-        <span>Exclusive Picks</span>
+        <span>Exklusive Tipps</span>
       </div>
 
       <div class="trust-item">
-        <strong>24/7</strong>
-        <span>Updates</span>
+        <strong>TÄGLICH</strong>
+        <span>Neue Tipps</span>
       </div>
 
       <div class="trust-item">
-        <strong>LIVE</strong>
-        <span>Sports Action</span>
+        <strong>TELEGRAM</strong>
+        <span>Persönlicher Chat</span>
       </div>
 
       <div class="trust-item">
@@ -970,13 +1037,14 @@
         </div>
 
         <h2>
-          Keine leeren Versprechen.
-          <span style="color:var(--lime);">Nur klare Picks.</span>
+          Klare Tipps.
+          <span style="color:var(--lime);">Direkt zu dir.</span>
         </h2>
 
         <p>
-          ODDZONE konzentriert sich auf strukturierte Sports Picks,
-          nachvollziehbare Ergebnisse und eine direkte Community.
+          ODDZONE konzentriert sich auf strukturierte Sport-Tipps,
+          nachvollziehbare Informationen und eine einfache Nutzung
+          über deinen persönlichen Telegram-Chat.
         </p>
 
       </div>
@@ -991,12 +1059,12 @@
           </div>
 
           <h3>
-            Schnelle Notifications
+            Tägliche Tipps
           </h3>
 
           <p>
-            Neue Picks und wichtige Updates direkt in der Community,
-            damit du keine relevanten Informationen verpasst.
+            Erhalte täglich neue Sport-Tipps direkt in deinem
+            persönlichen ODDZONE Telegram-Chat.
           </p>
 
         </div>
@@ -1009,12 +1077,12 @@
           </div>
 
           <h3>
-            Transparente Statistik
+            Nachvollziehbare Statistik
           </h3>
 
           <p>
-            Gewinne und Verluste sollen nachvollziehbar dokumentiert
-            werden – ohne versteckte Ergebnisse.
+            Ergebnisse und vergangene Tipps werden strukturiert
+            dokumentiert und übersichtlich dargestellt.
           </p>
 
         </div>
@@ -1027,12 +1095,12 @@
           </div>
 
           <h3>
-            Private VIP Community
+            Persönlicher Telegram-Chat
           </h3>
 
           <p>
-            Exklusive Inhalte und Austausch innerhalb einer privaten
-            ODDZONE Community.
+            Keine öffentliche Gruppe. Deine ODDZONE-Inhalte
+            erhältst du direkt in deinem persönlichen Bot-Chat.
           </p>
 
         </div>
@@ -1057,17 +1125,17 @@
         <div class="stats-content">
 
           <div class="section-label">
-            Performance
+            Statistik
           </div>
 
           <div class="stats-main">
-            +12.4%
+            DEMO
           </div>
 
           <p class="stats-description">
-            Beispielhafte Performance-Darstellung.
-            Die endgültige Statistik sollte später mit echten,
-            vollständig dokumentierten Picks verbunden werden.
+            Die dargestellten Werte sind aktuell nur Beispiele.
+            Sobald ODDZONE live ist, werden hier echte und
+            vollständig dokumentierte Ergebnisse verwendet.
           </p>
 
         </div>
@@ -1107,18 +1175,18 @@
           <div class="example-picks">
 
             <div class="pick-row">
-              <span>Fussball • Beispiel Pick</span>
-              <span class="pick-win">WIN</span>
+              <span>Fussball • Beispiel-Tipp</span>
+              <span class="pick-win">BEISPIEL</span>
             </div>
 
             <div class="pick-row">
-              <span>Tennis • Beispiel Pick</span>
-              <span class="pick-win">WIN</span>
+              <span>Tennis • Beispiel-Tipp</span>
+              <span class="pick-win">BEISPIEL</span>
             </div>
 
             <div class="pick-row">
-              <span>Basketball • Beispiel Pick</span>
-              <span class="pick-loss">LOSS</span>
+              <span>Basketball • Beispiel-Tipp</span>
+              <span class="pick-loss">BEISPIEL</span>
             </div>
 
           </div>
@@ -1152,7 +1220,7 @@
         </h2>
 
         <p>
-          Einfacher Zugang zu den ODDZONE VIP-Inhalten.
+          Einfacher Zugang zu deinen täglichen ODDZONE VIP-Tipps.
         </p>
 
       </div>
@@ -1167,12 +1235,12 @@
           </div>
 
           <h3>
-            VIP beitreten
+            VIP-Zugang kaufen
           </h3>
 
           <p>
-            Wähle deine VIP-Mitgliedschaft und erhalte Zugang
-            zu den exklusiven Inhalten.
+            Wähle den ODDZONE VIP-Zugang für CHF 50 pro Monat
+            und schliesse dein Abonnement ab.
           </p>
 
         </div>
@@ -1185,12 +1253,12 @@
           </div>
 
           <h3>
-            Community öffnen
+            Telegram verbinden
           </h3>
 
           <p>
-            Betritt die private ODDZONE Community und erhalte
-            neue Updates und Picks.
+            Nach der Freischaltung verbindest du deinen
+            persönlichen Telegram-Account mit ODDZONE.
           </p>
 
         </div>
@@ -1203,13 +1271,113 @@
           </div>
 
           <h3>
-            Picks verfolgen
+            Tipps erhalten
           </h3>
 
           <p>
-            Verfolge aktuelle und vergangene Picks sowie
-            die dokumentierten Ergebnisse.
+            Fordere deine täglichen Tipps direkt in deinem
+            persönlichen ODDZONE Telegram-Chat an.
           </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       TELEGRAM
+  ========================= -->
+
+  <section id="telegram" class="telegram-section">
+
+    <div class="container">
+
+      <div class="telegram-card">
+
+        <div>
+
+          <div class="telegram-icon">
+            ✈️
+          </div>
+
+          <div class="section-label">
+            Deine Tipps
+          </div>
+
+          <h2>
+            Alles direkt in
+            <span>Telegram.</span>
+          </h2>
+
+          <p>
+            Keine öffentliche Gruppe und kein kompliziertes
+            Dashboard. Deine ODDZONE VIP-Tipps werden direkt
+            über deinen persönlichen Telegram-Chat bereitgestellt.
+          </p>
+
+        </div>
+
+
+        <div class="telegram-info">
+
+          <div class="telegram-info-item">
+
+            <strong>
+              🟢 Tages-Tipps
+            </strong>
+
+            <span>
+              Fordere deine täglichen Sport-Tipps jederzeit
+              direkt im Bot an.
+            </span>
+
+          </div>
+
+
+          <div class="telegram-info-item">
+
+            <strong>
+              🔥 Top-Tipp
+            </strong>
+
+            <span>
+              Zugriff auf den jeweils hervorgehobenen Tipp
+              des Tages.
+            </span>
+
+          </div>
+
+
+          <div class="telegram-info-item">
+
+            <strong>
+              📊 Statistik
+            </strong>
+
+            <span>
+              Übersicht über dokumentierte Ergebnisse und
+              vergangene Tipps.
+            </span>
+
+          </div>
+
+
+          <div class="telegram-info-item">
+
+            <strong>
+              🔒 Persönlich
+            </strong>
+
+            <span>
+              Jeder VIP-Kunde erhält seine Inhalte in einem
+              eigenen Telegram-Chat.
+            </span>
+
+          </div>
 
         </div>
 
@@ -1239,7 +1407,8 @@
         </h2>
 
         <p style="color:var(--muted);">
-          Exklusive Sports Picks und Community-Zugang.
+          Tägliche Sport-Tipps direkt über deinen persönlichen
+          ODDZONE Telegram-Chat.
         </p>
 
         <div class="vip-price">
@@ -1251,15 +1420,15 @@
         <ul class="vip-list">
 
           <li>
-            Exklusive VIP Picks
+            Tägliche VIP Sport-Tipps
           </li>
 
           <li>
-            Private Community
+            Persönlicher Telegram-Bot
           </li>
 
           <li>
-            Pick Notifications
+            Begründungen zu den Tipps
           </li>
 
           <li>
@@ -1267,14 +1436,14 @@
           </li>
 
           <li>
-            Zugriff auf vergangene Picks
+            Zugriff auf vergangene Tipps
           </li>
 
         </ul>
 
 
         <a href="#" class="btn-primary">
-          VIP BEITRETEN →
+          VIP-ZUGANG HOLEN →
         </a>
 
       </div>
@@ -1314,8 +1483,8 @@
           </h3>
 
           <p>
-            Nein. Sportwetten sind mit Risiko verbunden und
-            vergangene Ergebnisse garantieren keine zukünftigen Gewinne.
+            Nein. Sportwetten sind mit Risiko verbunden.
+            Vergangene Ergebnisse garantieren keine zukünftigen Gewinne.
           </p>
 
         </div>
@@ -1328,9 +1497,9 @@
           </h3>
 
           <p>
-            Je nach Angebot können unter anderem Fussball,
-            Tennis, Basketball, Eishockey und weitere Sportarten
-            enthalten sein.
+            Je nach verfügbarem Angebot können unter anderem
+            Fussball, Tennis, Basketball, Eishockey und weitere
+            Sportarten enthalten sein.
           </p>
 
         </div>
@@ -1339,12 +1508,27 @@
         <div class="faq-item">
 
           <h3>
-            Wie funktioniert VIP?
+            Wie erhalte ich die Tipps?
           </h3>
 
           <p>
-            Nach dem Beitritt erhältst du Zugang zu den vorgesehenen
-            VIP-Inhalten und der privaten Community.
+            Nach erfolgreicher Freischaltung erhältst du deine
+            ODDZONE VIP-Inhalte direkt über deinen persönlichen
+            Telegram-Chat.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            Gibt es eine öffentliche Telegram-Gruppe?
+          </h3>
+
+          <p>
+            Nein. ODDZONE setzt auf persönliche Telegram-Chats.
+            Jeder VIP-Kunde erhält seine Inhalte individuell.
           </p>
 
         </div>
@@ -1357,7 +1541,7 @@
           </h3>
 
           <p>
-            Die konkreten Kündigungsbedingungen hängen vom später
+            Die konkreten Kündigungsbedingungen hängen vom
             eingesetzten Zahlungsanbieter und deinem gewählten
             Abonnement ab.
           </p>
@@ -1373,8 +1557,9 @@
 
           <p>
             Nein. Sportwetten sind nur für Personen geeignet,
-            die das gesetzlich vorgeschriebene Mindestalter erreicht haben.
-            Beachte die geltenden Regeln an deinem Wohnort.
+            die das gesetzlich vorgeschriebene Mindestalter
+            erreicht haben. Beachte die geltenden Regeln an
+            deinem Wohnort.
           </p>
 
         </div>
@@ -1404,8 +1589,8 @@
       </h2>
 
       <p>
-        Werde Teil der ODDZONE Community und erhalte Zugang
-        zu exklusiven Sports Picks.
+        Sichere dir deinen ODDZONE VIP-Zugang und erhalte
+        deine täglichen Sport-Tipps direkt über Telegram.
       </p>
 
       <a href="#vip" class="btn-primary">
@@ -1440,3 +1625,4 @@
 
 </body>
 </html>
+```
