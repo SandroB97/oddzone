@@ -4,30 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ODDZONE — Your Sports. Your Zone.</title>
-
+  <title>ODDZONE – Sports Picks & VIP</title>
   <meta
     name="description"
-    content="ODDZONE — Exklusive Sport-Tipps, schnelle Benachrichtigungen und transparente Statistiken."
+    content="ODDZONE – Sports Picks, Statistiken und exklusive VIP-Tipps."
   >
 
   <style>
     :root {
-      --bg: #070907;
-      --bg-soft: #0d110d;
-      --card: #111611;
-      --card-2: #151b15;
-      --text: #f4f7f2;
-      --muted: #9ca69a;
-      --line: rgba(255,255,255,.09);
+      --bg: #050505;
+      --bg-soft: #0b0b0b;
+      --card: #101010;
+      --card-2: #151515;
       --lime: #b7ff00;
-      --lime-soft: rgba(183,255,0,.12);
+      --lime-dark: #83b900;
+      --white: #ffffff;
+      --muted: #9a9a9a;
+      --border: rgba(255,255,255,0.08);
+      --green: #4dff88;
+      --red: #ff5c5c;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
@@ -36,11 +37,8 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at 80% 0%, rgba(183,255,0,.10), transparent 30%),
-        radial-gradient(circle at 10% 25%, rgba(183,255,0,.05), transparent 25%),
-        var(--bg);
-      color: var(--text);
+      background: var(--bg);
+      color: var(--white);
       line-height: 1.6;
     }
 
@@ -49,32 +47,39 @@
       text-decoration: none;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
     .container {
-      width: min(1120px, calc(100% - 40px));
+      width: min(1180px, 92%);
       margin: 0 auto;
     }
 
-    /* NAVIGATION */
+    /* =========================
+       NAVIGATION
+    ========================= */
 
     nav {
       position: sticky;
       top: 0;
-      z-index: 100;
-      backdrop-filter: blur(18px);
-      background: rgba(7,9,7,.82);
-      border-bottom: 1px solid var(--line);
+      z-index: 1000;
+      background: rgba(5,5,5,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-inner {
-      min-height: 72px;
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 30px;
     }
 
     .logo {
-      font-size: 24px;
+      font-size: 27px;
       font-weight: 900;
       letter-spacing: -1.5px;
     }
@@ -85,69 +90,92 @@
 
     .nav-links {
       display: flex;
-      gap: 26px;
-      color: var(--muted);
+      align-items: center;
+      gap: 28px;
       font-size: 14px;
+      color: #d6d6d6;
+    }
+
+    .nav-links a {
+      transition: 0.2s ease;
     }
 
     .nav-links a:hover {
-      color: var(--text);
+      color: var(--lime);
     }
 
     .nav-button {
       background: var(--lime);
-      color: #080a07;
-      padding: 11px 17px;
-      border-radius: 10px;
-      font-weight: 800;
-      font-size: 14px;
+      color: #050505;
+      padding: 11px 19px;
+      border-radius: 8px;
+      font-weight: 900;
+      font-size: 13px;
+      transition: 0.2s ease;
     }
 
-    /* HERO */
+    .nav-button:hover {
+      background: #d1ff4d;
+      transform: translateY(-1px);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
-      min-height: 760px;
-      display: flex;
-      align-items: center;
       position: relative;
       overflow: hidden;
+      background:
+        radial-gradient(circle at 80% 35%, rgba(183,255,0,0.12), transparent 32%),
+        radial-gradient(circle at 20% 20%, rgba(183,255,0,0.05), transparent 30%),
+        var(--bg);
     }
 
-    .hero-grid {
+    .hero::before {
+      content: "";
       position: absolute;
       inset: 0;
-      opacity: .08;
       background-image:
-        linear-gradient(rgba(255,255,255,.25) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.25) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
       background-size: 50px 50px;
       mask-image: linear-gradient(to bottom, black, transparent);
+      pointer-events: none;
+    }
+
+    .hero-layout {
+      position: relative;
+      min-height: 760px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 50px;
+      padding: 80px 0;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 820px;
-      padding: 90px 0;
     }
 
-    .badge {
+    .vip-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid rgba(183,255,0,.25);
-      background: var(--lime-soft);
+      border: 1px solid rgba(183,255,0,0.35);
+      background: rgba(183,255,0,0.07);
       color: var(--lime);
       padding: 8px 13px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
+      font-weight: 900;
       letter-spacing: 1px;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
 
-    .dot {
+    .vip-badge::before {
+      content: "";
       width: 7px;
       height: 7px;
       border-radius: 50%;
@@ -155,61 +183,134 @@
       box-shadow: 0 0 12px var(--lime);
     }
 
-    h1 {
-      font-size: clamp(54px, 10vw, 105px);
-      line-height: .9;
-      letter-spacing: -6px;
-      max-width: 900px;
-      margin-bottom: 28px;
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: 0.95;
+      letter-spacing: -5px;
+      max-width: 780px;
+      font-weight: 950;
+      margin-bottom: 25px;
     }
 
-    h1 span {
+    .hero h1 span {
       color: var(--lime);
     }
 
     .hero-text {
-      max-width: 650px;
-      color: var(--muted);
-      font-size: 19px;
-      margin-bottom: 35px;
+      max-width: 620px;
+      color: #b2b2b2;
+      font-size: 18px;
+      margin-bottom: 32px;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 13px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 15px 22px;
-      border-radius: 12px;
-      font-weight: 900;
-      transition: .2s ease;
+      margin-bottom: 30px;
     }
 
     .btn-primary {
       background: var(--lime);
-      color: #080a07;
+      color: #050505;
+      padding: 15px 24px;
+      border-radius: 9px;
+      font-weight: 900;
+      font-size: 14px;
+      transition: 0.2s ease;
     }
 
-    .btn-secondary {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
-
-    .btn:hover {
+    .btn-primary:hover {
+      background: #d1ff4d;
       transform: translateY(-2px);
     }
 
-    /* VERTRAUEN */
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.03);
+      color: white;
+      padding: 15px 24px;
+      border-radius: 9px;
+      font-weight: 800;
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
 
-    .trust {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,.015);
+    .btn-secondary:hover {
+      border-color: var(--lime);
+      color: var(--lime);
+    }
+
+    /* =========================
+       HERO IMAGE
+    ========================= */
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 570px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(183,255,0,0.2);
+      background: #0c0c0c;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.02),
+        0 30px 80px rgba(0,0,0,0.7),
+        0 0 80px rgba(183,255,0,0.08);
+    }
+
+    .hero-image-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(183,255,0,0.10),
+        transparent 35%,
+        transparent 70%,
+        rgba(183,255,0,0.06)
+      );
+      pointer-events: none;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+      min-height: 500px;
+      object-fit: cover;
+    }
+
+    .hero-image-label {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 3;
+      background: rgba(5,5,5,0.82);
+      border: 1px solid rgba(183,255,0,0.3);
+      color: var(--lime);
+      padding: 9px 13px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      backdrop-filter: blur(8px);
+    }
+
+    /* =========================
+       TRUST BAR
+    ========================= */
+
+    .trust-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: #090909;
     }
 
     .trust-grid {
@@ -218,208 +319,233 @@
     }
 
     .trust-item {
-      padding: 27px 15px;
-      text-align: center;
-      border-right: 1px solid var(--line);
-    }
-
-    .trust-item:last-child {
-      border-right: 0;
-    }
-
-    .trust-number {
-      font-size: 27px;
-      font-weight: 900;
-      color: var(--lime);
-    }
-
-    .trust-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 3px;
-    }
-
-    /* ABSCHNITTE */
-
-    section {
-      padding: 105px 0;
-    }
-
-    .section-kicker {
-      color: var(--lime);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-      font-weight: 900;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(36px, 6vw, 64px);
-      line-height: 1;
-      letter-spacing: -3px;
-      max-width: 750px;
-      margin-bottom: 18px;
-    }
-
-    .section-subtitle {
-      color: var(--muted);
-      max-width: 650px;
-      font-size: 17px;
-    }
-
-    /* WARUM ODDZONE */
-
-    .features {
-      margin-top: 55px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .feature {
-      background: linear-gradient(145deg, var(--card-2), var(--card));
-      border: 1px solid var(--line);
-      padding: 30px;
-      border-radius: 20px;
-    }
-
-    .feature-icon {
-      width: 45px;
-      height: 45px;
+      min-height: 95px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 12px;
-      background: var(--lime-soft);
+      flex-direction: column;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .trust-item:last-child {
+      border-right: none;
+    }
+
+    .trust-item strong {
       color: var(--lime);
-      font-size: 20px;
-      margin-bottom: 22px;
+      font-size: 18px;
+      font-weight: 950;
     }
 
-    .feature h3 {
-      font-size: 21px;
-      margin-bottom: 10px;
+    .trust-item span {
+      color: #777;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 3px;
     }
 
-    .feature p {
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 55px;
+    }
+
+    .section-label {
+      color: var(--lime);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1;
+      letter-spacing: -3px;
+      margin-bottom: 17px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: linear-gradient(145deg, #111111, #0b0b0b);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 30px;
+      transition: 0.25s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(183,255,0,0.28);
+    }
+
+    .feature-number {
+      color: var(--lime);
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 45px;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
       color: var(--muted);
       font-size: 14px;
     }
 
-    /* STATISTIK */
+    /* =========================
+       STATISTICS
+    ========================= */
 
     .stats-section {
-      background: #0a0d0a;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      background: #080808;
     }
 
     .stats-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 55px;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 50px;
       align-items: center;
     }
 
-    .stats-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 25px;
+    .stats-main {
+      font-size: clamp(58px, 8vw, 105px);
+      font-weight: 950;
+      line-height: 0.9;
+      color: var(--lime);
+      letter-spacing: -5px;
+      margin-bottom: 18px;
     }
 
-    .stats-top {
+    .stats-description {
+      color: var(--muted);
+      max-width: 450px;
+    }
+
+    .chart {
+      background: #0e0e0e;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 30px;
+    }
+
+    .chart-top {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 25px;
-      color: var(--muted);
-      font-size: 13px;
+      align-items: center;
+      margin-bottom: 30px;
     }
 
-    .stat-big {
-      font-size: 48px;
-      font-weight: 900;
+    .chart-top strong {
+      font-size: 15px;
+    }
+
+    .chart-top span {
       color: var(--lime);
-      line-height: 1;
-    }
-
-    .stat-caption {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 6px;
+      font-weight: 900;
+      font-size: 14px;
     }
 
     .bars {
-      margin-top: 30px;
+      height: 220px;
       display: flex;
       align-items: end;
-      gap: 8px;
-      height: 150px;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 0;
     }
 
     .bar {
       flex: 1;
-      background: var(--lime);
-      opacity: .8;
+      background: linear-gradient(to top, var(--lime-dark), var(--lime));
       border-radius: 5px 5px 0 0;
+      min-width: 8px;
+      box-shadow: 0 0 18px rgba(183,255,0,0.12);
     }
 
-    .bar:nth-child(1) { height: 45%; }
-    .bar:nth-child(2) { height: 60%; }
-    .bar:nth-child(3) { height: 35%; }
-    .bar:nth-child(4) { height: 75%; }
-    .bar:nth-child(5) { height: 55%; }
-    .bar:nth-child(6) { height: 88%; }
-    .bar:nth-child(7) { height: 70%; }
-    .bar:nth-child(8) { height: 94%; }
-
-    .tip-list {
-      margin-top: 30px;
+    .example-picks {
+      margin-top: 25px;
       display: grid;
       gap: 10px;
     }
 
-    .tip {
+    .pick-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: rgba(255,255,255,.025);
+      background: #121212;
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 13px 15px;
+      border-radius: 9px;
       font-size: 13px;
     }
 
-    .tip-result {
-      color: var(--lime);
+    .pick-win {
+      color: var(--green);
       font-weight: 900;
     }
 
-    /* SO FUNKTIONIERT'S */
+    .pick-loss {
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    /* =========================
+       HOW IT WORKS
+    ========================= */
 
     .steps {
-      margin-top: 55px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 18px;
     }
 
     .step {
-      border-top: 1px solid var(--line);
-      padding-top: 22px;
+      position: relative;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: #0d0d0d;
     }
 
     .step-number {
       color: var(--lime);
-      font-size: 13px;
-      font-weight: 900;
-      margin-bottom: 20px;
+      font-size: 48px;
+      line-height: 1;
+      font-weight: 950;
+      margin-bottom: 35px;
     }
 
     .step h3 {
-      font-size: 22px;
-      margin-bottom: 9px;
+      font-size: 20px;
+      margin-bottom: 10px;
     }
 
     .step p {
@@ -427,120 +553,119 @@
       font-size: 14px;
     }
 
-    /* PREIS */
+    /* =========================
+       VIP
+    ========================= */
 
-    .pricing-wrap {
-      display: flex;
-      justify-content: center;
-      margin-top: 50px;
-    }
-
-    .pricing-card {
-      width: min(520px, 100%);
+    .vip-section {
       background:
-        radial-gradient(circle at 100% 0%, rgba(183,255,0,.13), transparent 35%),
-        var(--card);
-      border: 1px solid rgba(183,255,0,.25);
-      border-radius: 25px;
-      padding: 38px;
+        radial-gradient(circle at 50% 0%, rgba(183,255,0,0.08), transparent 40%),
+        #070707;
     }
 
-    .popular {
-      display: inline-block;
-      color: #080a07;
-      background: var(--lime);
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
+    .vip-card {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 55px;
+      text-align: center;
+      background: linear-gradient(145deg, #121212, #090909);
+      border: 1px solid rgba(183,255,0,0.28);
+      border-radius: 22px;
+      box-shadow: 0 30px 100px rgba(0,0,0,0.45);
     }
 
-    .price {
-      font-size: 65px;
+    .vip-card h2 {
+      font-size: clamp(40px, 6vw, 70px);
+      letter-spacing: -3px;
       line-height: 1;
-      font-weight: 900;
-      letter-spacing: -4px;
-      margin: 12px 0;
+      margin-bottom: 15px;
     }
 
-    .price span {
-      font-size: 15px;
-      color: var(--muted);
+    .vip-card h2 span {
+      color: var(--lime);
+    }
+
+    .vip-price {
+      font-size: 60px;
+      font-weight: 950;
+      margin: 25px 0;
+      letter-spacing: -3px;
+    }
+
+    .vip-price small {
+      color: #777;
+      font-size: 16px;
+      font-weight: 500;
       letter-spacing: 0;
     }
 
-    .pricing-description {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 25px;
-    }
-
-    .check-list {
+    .vip-list {
       list-style: none;
       display: grid;
-      gap: 12px;
-      margin-bottom: 28px;
+      gap: 11px;
+      max-width: 430px;
+      margin: 0 auto 30px;
+      text-align: left;
     }
 
-    .check-list li {
+    .vip-list li {
+      color: #d5d5d5;
       font-size: 14px;
     }
 
-    .check-list li::before {
+    .vip-list li::before {
       content: "✓";
       color: var(--lime);
       font-weight: 900;
       margin-right: 10px;
     }
 
-    .full-btn {
-      width: 100%;
-    }
-
-    /* FAQ */
+    /* =========================
+       FAQ
+    ========================= */
 
     .faq {
-      max-width: 800px;
-      margin: 50px auto 0;
+      max-width: 850px;
+      margin: 0 auto;
     }
 
-    details {
-      border-bottom: 1px solid var(--line);
-      padding: 22px 0;
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
     }
 
-    summary {
-      cursor: pointer;
-      font-weight: 800;
-      list-style: none;
+    .faq-item h3 {
+      font-size: 17px;
+      margin-bottom: 9px;
     }
 
-    summary::-webkit-details-marker {
-      display: none;
-    }
-
-    details p {
+    .faq-item p {
       color: var(--muted);
       font-size: 14px;
-      padding-top: 14px;
-      max-width: 700px;
     }
 
-    /* CTA */
+    /* =========================
+       CTA
+    ========================= */
 
     .final-cta {
-      text-align: center;
       padding: 120px 0;
-      border-top: 1px solid var(--line);
+      text-align: center;
+      border-top: 1px solid var(--border);
+      background:
+        radial-gradient(circle at center, rgba(183,255,0,0.09), transparent 38%),
+        #050505;
     }
 
     .final-cta h2 {
-      font-size: clamp(42px, 8vw, 82px);
-      line-height: .95;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.95;
       letter-spacing: -4px;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
+    }
+
+    .final-cta h2 span {
+      color: var(--lime);
     }
 
     .final-cta p {
@@ -549,83 +674,156 @@
       margin: 0 auto 30px;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
-      border-top: 1px solid var(--line);
-      padding: 30px 0;
-      color: var(--muted);
-      font-size: 12px;
+      border-top: 1px solid var(--border);
+      padding: 35px 0;
+      background: #030303;
     }
 
     .footer-inner {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 20px;
     }
 
-    /* MOBILE */
+    .footer-logo {
+      font-size: 22px;
+      font-weight: 950;
+    }
 
-    @media (max-width: 800px) {
+    .footer-logo span {
+      color: var(--lime);
+    }
 
-      .container {
-        width: min(100% - 28px, 1120px);
-      }
+    .footer-text {
+      color: #666;
+      font-size: 12px;
+      text-align: right;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
 
       .nav-links {
         display: none;
       }
 
-      .nav-button {
-        padding: 9px 13px;
-        font-size: 12px;
+      .hero-layout {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 70px 0 80px;
       }
 
-      .hero {
-        min-height: 690px;
-      }
-
-      h1 {
-        font-size: clamp(48px, 16vw, 75px);
-        letter-spacing: -4px;
+      .hero-content {
+        text-align: center;
       }
 
       .hero-text {
-        font-size: 16px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        margin-top: 15px;
+      }
+
+      .hero-image-wrap {
+        max-width: 650px;
+      }
+
+      .features,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-content {
+        text-align: center;
+      }
+
+      .stats-description {
+        margin: 0 auto;
       }
 
       .trust-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .trust-item {
-        border-bottom: 1px solid var(--line);
+      .trust-item:nth-child(2) {
+        border-right: none;
       }
 
-      .features,
-      .steps,
-      .stats-layout {
-        grid-template-columns: 1fr;
+      .trust-item:nth-child(3),
+      .trust-item:nth-child(4) {
+        border-top: 1px solid var(--border);
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: min(92%, 520px);
+      }
+
+      .hero h1 {
+        font-size: 53px;
+        letter-spacing: -3px;
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .hero-image-wrap {
+        border-radius: 16px;
+      }
+
+      .hero-image {
+        min-height: 350px;
       }
 
       section {
         padding: 80px 0;
       }
 
-      .section-title {
+      .section-heading h2 {
         letter-spacing: -2px;
       }
 
-      .pricing-card {
-        padding: 28px 22px;
+      .vip-card {
+        padding: 35px 20px;
       }
 
-      .price {
-        font-size: 55px;
+      .vip-price {
+        font-size: 50px;
+      }
+
+      .trust-item {
+        min-height: 80px;
       }
 
       .footer-inner {
         flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-text {
+        text-align: center;
       }
     }
   </style>
@@ -633,7 +831,9 @@
 
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
 
   <nav>
     <div class="container nav-inner">
@@ -650,47 +850,68 @@
       </div>
 
       <a href="#vip" class="nav-button">
-        VIP BEITRETEN
+        VIP JOINEN
       </a>
 
     </div>
   </nav>
 
 
-  <!-- HERO -->
+  <!-- =========================
+       HERO
+  ========================= -->
 
   <header class="hero">
 
-    <div class="hero-grid"></div>
-
-    <div class="container">
+    <div class="container hero-layout">
 
       <div class="hero-content">
 
-        <div class="badge">
-          <span class="dot"></span>
+        <div class="vip-badge">
           ODDZONE VIP
         </div>
 
         <h1>
           YOUR SPORTS.<br>
-          <span>YOUR ZONE.</span>
+          YOUR <span>ZONE.</span>
         </h1>
 
         <p class="hero-text">
-          Exklusive Sport-Tipps, schnelle Benachrichtigungen und
-          transparente Statistiken – alles an einem Ort.
+          Professionelle Sports Picks, transparente Statistiken
+          und exklusive VIP-Tipps für Fussball, Tennis,
+          Basketball, Eishockey und mehr.
         </p>
 
-        <div class="hero-actions">
+        <div class="hero-buttons">
 
-          <a href="#vip" class="btn btn-primary">
-            VIP BEITRETEN →
+          <a href="#vip" class="btn-primary">
+            VIP STARTEN →
           </a>
 
-          <a href="#statistik" class="btn btn-secondary">
+          <a href="#statistik" class="btn-secondary">
             STATISTIK ANSEHEN
           </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- HERO IMAGE -->
+
+      <div class="hero-visual">
+
+        <div class="hero-image-wrap">
+
+          <img
+            src="./IMG_7465.png"
+            alt="ODDZONE Sports Picks"
+            class="hero-image"
+          >
+
+          <div class="hero-image-label">
+            ODDZONE • SPORTS PICKS
+          </div>
 
         </div>
 
@@ -701,30 +922,32 @@
   </header>
 
 
-  <!-- VERTRAUEN -->
+  <!-- =========================
+       TRUST BAR
+  ========================= -->
 
-  <div class="trust">
+  <div class="trust-bar">
 
     <div class="container trust-grid">
 
       <div class="trust-item">
-        <div class="trust-number">VIP</div>
-        <div class="trust-label">Private Community</div>
+        <strong>VIP</strong>
+        <span>Exclusive Picks</span>
       </div>
 
       <div class="trust-item">
-        <div class="trust-number">24/7</div>
-        <div class="trust-label">Schnelle Benachrichtigungen</div>
+        <strong>24/7</strong>
+        <span>Updates</span>
       </div>
 
       <div class="trust-item">
-        <div class="trust-number">LIVE</div>
-        <div class="trust-label">Transparente Statistik</div>
+        <strong>LIVE</strong>
+        <span>Sports Action</span>
       </div>
 
       <div class="trust-item">
-        <div class="trust-number">CHF 50</div>
-        <div class="trust-label">Pro Monat</div>
+        <strong>CHF 50</strong>
+        <span>Pro Monat</span>
       </div>
 
     </div>
@@ -732,142 +955,172 @@
   </div>
 
 
-  <!-- WARUM ODDZONE -->
+  <!-- =========================
+       WARUM ODDZONE
+  ========================= -->
 
   <section id="warum">
 
     <div class="container">
 
-      <div class="section-kicker">
-        WARUM ODDZONE
-      </div>
+      <div class="section-heading">
 
-      <h2 class="section-title">
-        Mehr als nur ein Tipp.
-      </h2>
-
-      <p class="section-subtitle">
-        ODDZONE verbindet Sport-Analysen, klare Kommunikation und
-        eine private Community in einer einfachen Plattform.
-      </p>
-
-
-      <div class="features">
-
-        <div class="feature">
-
-          <div class="feature-icon">⚡</div>
-
-          <h3>Schnelle Benachrichtigungen</h3>
-
-          <p>
-            Relevante Tipps und Updates direkt in der privaten Community.
-            Schnell, übersichtlich und ohne unnötigen Spam.
-          </p>
-
+        <div class="section-label">
+          Warum ODDZONE
         </div>
 
-
-        <div class="feature">
-
-          <div class="feature-icon">◎</div>
-
-          <h3>Transparente Statistiken</h3>
-
-          <p>
-            Ergebnisse und Performance sollen nachvollziehbar dokumentiert
-            werden – statt nur einzelne Gewinner zu zeigen.
-          </p>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-icon">◆</div>
-
-          <h3>Private VIP-Community</h3>
-
-          <p>
-            Eine private Umgebung für Mitglieder mit exklusiven Inhalten,
-            Updates und Diskussionen rund um Sport.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- STATISTIK -->
-
-  <section id="statistik" class="stats-section">
-
-    <div class="container stats-layout">
-
-      <div>
-
-        <div class="section-kicker">
-          TRANSPARENTE STATISTIK
-        </div>
-
-        <h2 class="section-title">
-          Ergebnisse sichtbar machen.
+        <h2>
+          Keine leeren Versprechen.
+          <span style="color:var(--lime);">Nur klare Picks.</span>
         </h2>
 
-        <p class="section-subtitle">
-          Keine versteckten Ergebnisse. ODDZONE soll langfristig eine
-          nachvollziehbare Statistik über veröffentlichte Tipps zeigen.
+        <p>
+          ODDZONE konzentriert sich auf strukturierte Sports Picks,
+          nachvollziehbare Ergebnisse und eine direkte Community.
         </p>
 
       </div>
 
 
-      <div class="stats-card">
+      <div class="features">
 
-        <div class="stats-top">
-          <span>ODDZONE BEISPIEL-TRACKER</span>
-          <span>DEMO</span>
-        </div>
+        <div class="feature-card">
 
-        <div class="stat-big">
-          +12.4%
-        </div>
-
-        <div class="stat-caption">
-          Beispielwert – keine reale Performance.
-        </div>
-
-        <div class="bars">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-
-
-        <div class="tip-list">
-
-          <div class="tip">
-            <span>Fussball · Beispiel-Tipp</span>
-            <span class="tip-result">GEWONNEN</span>
+          <div class="feature-number">
+            01
           </div>
 
-          <div class="tip">
-            <span>Tennis · Beispiel-Tipp</span>
-            <span class="tip-result">GEWONNEN</span>
+          <h3>
+            Schnelle Notifications
+          </h3>
+
+          <p>
+            Neue Picks und wichtige Updates direkt in der Community,
+            damit du keine relevanten Informationen verpasst.
+          </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+          <div class="feature-number">
+            02
           </div>
 
-          <div class="tip">
-            <span>Basketball · Beispiel-Tipp</span>
-            <span class="tip-result">VERLOREN</span>
+          <h3>
+            Transparente Statistik
+          </h3>
+
+          <p>
+            Gewinne und Verluste sollen nachvollziehbar dokumentiert
+            werden – ohne versteckte Ergebnisse.
+          </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+          <div class="feature-number">
+            03
+          </div>
+
+          <h3>
+            Private VIP Community
+          </h3>
+
+          <p>
+            Exklusive Inhalte und Austausch innerhalb einer privaten
+            ODDZONE Community.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       STATISTIK
+  ========================= -->
+
+  <section id="statistik" class="stats-section">
+
+    <div class="container">
+
+      <div class="stats-layout">
+
+        <div class="stats-content">
+
+          <div class="section-label">
+            Performance
+          </div>
+
+          <div class="stats-main">
+            +12.4%
+          </div>
+
+          <p class="stats-description">
+            Beispielhafte Performance-Darstellung.
+            Die endgültige Statistik sollte später mit echten,
+            vollständig dokumentierten Picks verbunden werden.
+          </p>
+
+        </div>
+
+
+        <div class="chart">
+
+          <div class="chart-top">
+
+            <strong>
+              Beispiel Verlauf
+            </strong>
+
+            <span>
+              DEMO
+            </span>
+
+          </div>
+
+
+          <div class="bars">
+
+            <div class="bar" style="height:38%;"></div>
+            <div class="bar" style="height:45%;"></div>
+            <div class="bar" style="height:41%;"></div>
+            <div class="bar" style="height:58%;"></div>
+            <div class="bar" style="height:54%;"></div>
+            <div class="bar" style="height:70%;"></div>
+            <div class="bar" style="height:63%;"></div>
+            <div class="bar" style="height:79%;"></div>
+            <div class="bar" style="height:73%;"></div>
+            <div class="bar" style="height:91%;"></div>
+
+          </div>
+
+
+          <div class="example-picks">
+
+            <div class="pick-row">
+              <span>Fussball • Beispiel Pick</span>
+              <span class="pick-win">WIN</span>
+            </div>
+
+            <div class="pick-row">
+              <span>Tennis • Beispiel Pick</span>
+              <span class="pick-win">WIN</span>
+            </div>
+
+            <div class="pick-row">
+              <span>Basketball • Beispiel Pick</span>
+              <span class="pick-loss">LOSS</span>
+            </div>
+
           </div>
 
         </div>
@@ -879,35 +1132,47 @@
   </section>
 
 
-  <!-- SO FUNKTIONIERT'S -->
+  <!-- =========================
+       HOW IT WORKS
+  ========================= -->
 
   <section>
 
     <div class="container">
 
-      <div class="section-kicker">
-        SO FUNKTIONIERT'S
+      <div class="section-heading">
+
+        <div class="section-label">
+          So funktioniert's
+        </div>
+
+        <h2>
+          In drei Schritten
+          <span style="color:var(--lime);">dabei.</span>
+        </h2>
+
+        <p>
+          Einfacher Zugang zu den ODDZONE VIP-Inhalten.
+        </p>
+
       </div>
-
-      <h2 class="section-title">
-        Einfach. Schnell. Direkt.
-      </h2>
-
-      <p class="section-subtitle">
-        Der Zugang zur ODDZONE VIP-Zone soll so einfach wie möglich sein.
-      </p>
 
 
       <div class="steps">
 
         <div class="step">
 
-          <div class="step-number">01</div>
+          <div class="step-number">
+            01
+          </div>
 
-          <h3>VIP beitreten</h3>
+          <h3>
+            VIP beitreten
+          </h3>
 
           <p>
-            Mitgliedschaft auswählen und Zugang erhalten.
+            Wähle deine VIP-Mitgliedschaft und erhalte Zugang
+            zu den exklusiven Inhalten.
           </p>
 
         </div>
@@ -915,12 +1180,17 @@
 
         <div class="step">
 
-          <div class="step-number">02</div>
+          <div class="step-number">
+            02
+          </div>
 
-          <h3>Community öffnen</h3>
+          <h3>
+            Community öffnen
+          </h3>
 
           <p>
-            Zugang zur privaten ODDZONE-Community erhalten.
+            Betritt die private ODDZONE Community und erhalte
+            neue Updates und Picks.
           </p>
 
         </div>
@@ -928,12 +1198,17 @@
 
         <div class="step">
 
-          <div class="step-number">03</div>
+          <div class="step-number">
+            03
+          </div>
 
-          <h3>Tipps verfolgen</h3>
+          <h3>
+            Picks verfolgen
+          </h3>
 
           <p>
-            Exklusive Inhalte, Updates und Statistiken verfolgen.
+            Verfolge aktuelle und vergangene Picks sowie
+            die dokumentierten Ergebnisse.
           </p>
 
         </div>
@@ -945,61 +1220,62 @@
   </section>
 
 
-  <!-- VIP PREIS -->
+  <!-- =========================
+       VIP
+  ========================= -->
 
-  <section id="vip">
+  <section id="vip" class="vip-section">
 
     <div class="container">
 
-      <div class="section-kicker">
-        ODDZONE VIP
-      </div>
+      <div class="vip-card">
 
-      <h2 class="section-title">
-        Eine Mitgliedschaft.<br>
-        Volle Zone.
-      </h2>
-
-      <p class="section-subtitle">
-        Zugang zu den exklusiven ODDZONE-Inhalten und der privaten Community.
-      </p>
-
-
-      <div class="pricing-wrap">
-
-        <div class="pricing-card">
-
-          <div class="popular">
-            VIP-MITGLIEDSCHAFT
-          </div>
-
-          <h3>ODDZONE VIP</h3>
-
-          <div class="price">
-            CHF 50 <span>/ Monat</span>
-          </div>
-
-          <p class="pricing-description">
-            Monatliche Mitgliedschaft für den Zugang zur ODDZONE VIP-Zone.
-          </p>
-
-
-          <ul class="check-list">
-
-            <li>Private VIP-Community</li>
-            <li>Exklusive Sport-Tipps</li>
-            <li>Schnelle Benachrichtigungen</li>
-            <li>Transparente Statistiken</li>
-            <li>Regelmässige Updates</li>
-
-          </ul>
-
-
-          <a href="#" class="btn btn-primary full-btn">
-            ODDZONE VIP BEITRETEN →
-          </a>
-
+        <div class="section-label">
+          ODDZONE VIP
         </div>
+
+        <h2>
+          ENTER THE <span>ZONE.</span>
+        </h2>
+
+        <p style="color:var(--muted);">
+          Exklusive Sports Picks und Community-Zugang.
+        </p>
+
+        <div class="vip-price">
+          CHF 50
+          <small>/ Monat</small>
+        </div>
+
+
+        <ul class="vip-list">
+
+          <li>
+            Exklusive VIP Picks
+          </li>
+
+          <li>
+            Private Community
+          </li>
+
+          <li>
+            Pick Notifications
+          </li>
+
+          <li>
+            Dokumentierte Ergebnisse
+          </li>
+
+          <li>
+            Zugriff auf vergangene Picks
+          </li>
+
+        </ul>
+
+
+        <a href="#" class="btn-primary">
+          VIP BEITRETEN →
+        </a>
 
       </div>
 
@@ -1008,75 +1284,100 @@
   </section>
 
 
-  <!-- FAQ -->
+  <!-- =========================
+       FAQ
+  ========================= -->
 
   <section id="faq">
 
     <div class="container">
 
-      <div class="section-kicker">
-        FAQ
+      <div class="section-heading">
+
+        <div class="section-label">
+          FAQ
+        </div>
+
+        <h2>
+          Häufige Fragen
+        </h2>
+
       </div>
 
-      <h2 class="section-title">
-        Noch Fragen?
-      </h2>
 
       <div class="faq">
 
-        <details>
+        <div class="faq-item">
 
-          <summary>
-            Was bekomme ich mit ODDZONE VIP?
-          </summary>
-
-          <p>
-            Zugang zur privaten Community sowie zu exklusiven Sport-Tipps,
-            Benachrichtigungen und statistischen Übersichten.
-          </p>
-
-        </details>
-
-
-        <details>
-
-          <summary>
-            Wie viel kostet VIP?
-          </summary>
-
-          <p>
-            Die geplante Mitgliedschaft kostet CHF 50 pro Monat.
-          </p>
-
-        </details>
-
-
-        <details>
-
-          <summary>
+          <h3>
             Gibt es eine Gewinn-Garantie?
-          </summary>
+          </h3>
 
           <p>
-            Nein. Sportwetten sind mit finanziellen Risiken verbunden.
-            ODDZONE garantiert keine Gewinne oder bestimmte Ergebnisse.
+            Nein. Sportwetten sind mit Risiko verbunden und
+            vergangene Ergebnisse garantieren keine zukünftigen Gewinne.
           </p>
 
-        </details>
+        </div>
 
 
-        <details>
+        <div class="faq-item">
 
-          <summary>
+          <h3>
+            Welche Sportarten werden abgedeckt?
+          </h3>
+
+          <p>
+            Je nach Angebot können unter anderem Fussball,
+            Tennis, Basketball, Eishockey und weitere Sportarten
+            enthalten sein.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            Wie funktioniert VIP?
+          </h3>
+
+          <p>
+            Nach dem Beitritt erhältst du Zugang zu den vorgesehenen
+            VIP-Inhalten und der privaten Community.
+          </p>
+
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
             Kann ich jederzeit kündigen?
-          </summary>
+          </h3>
 
           <p>
-            Die genauen Kündigungsbedingungen werden vor dem Kauf
-            transparent angegeben.
+            Die konkreten Kündigungsbedingungen hängen vom später
+            eingesetzten Zahlungsanbieter und deinem gewählten
+            Abonnement ab.
           </p>
 
-        </details>
+        </div>
+
+
+        <div class="faq-item">
+
+          <h3>
+            Ist ODDZONE für Minderjährige geeignet?
+          </h3>
+
+          <p>
+            Nein. Sportwetten sind nur für Personen geeignet,
+            die das gesetzlich vorgeschriebene Mindestalter erreicht haben.
+            Beachte die geltenden Regeln an deinem Wohnort.
+          </p>
+
+        </div>
 
       </div>
 
@@ -1085,28 +1386,30 @@
   </section>
 
 
-  <!-- FINALER CTA -->
+  <!-- =========================
+       FINAL CTA
+  ========================= -->
 
   <section class="final-cta">
 
     <div class="container">
 
-      <div class="section-kicker">
-        WILLKOMMEN IN DER ZONE
+      <div class="section-label">
+        ODDZONE VIP
       </div>
 
       <h2>
-        YOUR SPORTS.<br>
-        <span style="color: var(--lime);">YOUR ZONE.</span>
+        READY FOR YOUR<br>
+        <span>ZONE?</span>
       </h2>
 
       <p>
-        ODDZONE baut eine private Sports-Community für Menschen,
-        die Sport verfolgen und Statistiken transparent sehen möchten.
+        Werde Teil der ODDZONE Community und erhalte Zugang
+        zu exklusiven Sports Picks.
       </p>
 
-      <a href="#vip" class="btn btn-primary">
-        VIP BEITRETEN →
+      <a href="#vip" class="btn-primary">
+        ODDZONE VIP →
       </a>
 
     </div>
@@ -1114,26 +1417,26 @@
   </section>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
   <footer>
 
     <div class="container footer-inner">
 
-      <div>
-        ©️ 2026 ODDZONE
+      <div class="footer-logo">
+        ODD<span>ZONE</span>
       </div>
 
-      <div>
+      <div class="footer-text">
+        ©️ 2026 ODDZONE. Alle Rechte vorbehalten.<br>
         Sportwetten sind mit finanziellen Risiken verbunden.
-        Keine Gewinn-Garantie.
-        Teilnahme nur, sofern gesetzlich erlaubt.
       </div>
 
     </div>
 
   </footer>
-
 
 </body>
 </html>
